@@ -1,5 +1,8 @@
 package org.st412m.kotlincourse.lesson3
 
+import sun.jvm.hotspot.ci.ciField
+import kotlin.properties.Delegates
+
 //Погрузимся в атмосферу "Hackathon Survival": Марафон, где участники пытаются завершить реальный проект в условиях
 // искусственно созданного хаоса (например, часто меняющиеся требования, неожиданные "сбои" в оборудовании)
 //Для каждого из полей подбери наилучший способ хранения из известных тебе. Учитывай такие факторы, как изменяемость,
@@ -53,23 +56,7 @@ lateinit var sponsorsList: String
 var eventBudget: Double = 1_000_000.1
 
 //Текущий уровень доступа к интернету
-var downloadSpeed: Double = 0.00
-    set(value) {
-        "стучимся по API на speedtest.com и берем оттуда значение Download speed"
-        field = value
-    }
-
-var uploadSpeed: Double = 0.00
-    set(value) {
-    "стучимся по API на speedtest.com и берем оттуда значение Upload speed"
-        field = value
-}
-
-var ping: Int = 0
-    set(value) {
-        "стучимся по API на speedtest.com и берем оттуда значение Ping"
-        field = value
-    }
+var internetAvailable: Boolean = true //доступен
 
 //Информация о транспортировке оборудования, распределении ресурсов и координации между различными командами)(нужно
 // только во время подготовки, хотя пункт вообще мутный, его разбивать надо в части координации)
@@ -90,64 +77,173 @@ val evacuationPlan: String by lazy {
     "путь к файлу с задачами"
 }
 
-//Список доступного оборудования (ОСТАНОВИЛСЯ ЗДЕСЬ)
-var availableEquipment: String = ""
+//Список доступного оборудования (нужен один раз)
+val availableEquipment: String by lazy {
+    "путь к списку"
+}
 
-//Список свободного оборудования
-var freeEquipment: String = ""
-
+//Список свободного оборудования (нужен периодически)
+var freeEquipment: String = "путь к списку"
 
 //График питания участников (зависит от поставщика питания, определяемого за неделю до начала)
+var foodSupplier: String = ""
+var mealSchedule: String = ""
+    set(value) {
+        if (foodSupplier in termsAgreements
+        )
+        field = value
+    }
 
 //План мероприятий на случай сбоев
+val contingencyPlan: String by lazy {
+    "путь к плану"
+}
 
 //Список экспертов и жюри
+var listExperts: String = "путь к файлу с экспертами и жюрями"
 
 //Методы и процедуры для сбора отзывов от участников и гостей, включая анонимные опросы и интервью.
+val feedbackMethods: String by lazy {
+    "путь к методам"
+}
 
 //Политика конфиденциальности
+val privacyPolicy: String by lazy {
+    "путь к политике"
+}
 
 //Приватные отзывы (фидбэк) участников и зрителей для анализа проблем.
+val feedback: String = "путь к месту где эти отзывы собираются"
 
 //Текущая температура в помещении
+var indoorTemperature: Double = 0.0
+    set(value) {
+        "тут API датчика температуры"
+        field = value
+    }
 
 //Мониторинг и анализ производительности сетевого оборудования и интернет-соединения.
+var downloadSpeed: Double = 0.00
+    set(value) {
+        "стучимся по API на speedtest.com и берем оттуда значение Download speed"
+        field = value
+    }
+
+var uploadSpeed: Double = 0.00
+    set(value) {
+        "стучимся по API на speedtest.com и берем оттуда значение Upload speed"
+        field = value
+    }
+
+var ping: Int = 0
+    set(value) {
+        "стучимся по API на speedtest.com и берем оттуда значение Ping"
+        field = value
+    }
 
 //Уровень освещения
+var indoorLighting: Double = 0.0
+    set(value) {
+        "тут API датчика освещенности"
+        field = value
+    }
 
 //Лог событий мероприятия
+var currentTime: String = ""
+    set(value) {
+        "каким-то образом получаем текущее время"
+        field = value
+    }
+var logEvent: String = ""
+    set(value) {
+        field = currentTime + eventStatus // добавляем в список время и событие
+    }
 
 //Доступность медицинской помощи
+var availabilityMedicalAssistance: Boolean = false
+var medicalAssistance: String = ""
+    set(value) {
+        if (medicalAssistance in termsAgreements
+        )
+            availabilityMedicalAssistance = true
+    }
+
 
 //Планы и процедуры для обеспечения безопасности мероприятия, включая планы эвакуации и протоколы чрезвычайных ситуаций.
+val securityProcedures: String by lazy {
+    "путь к планам"
+}
 
 //Регистрационный номер мероприятия
+const val regNumber: String = "QWERTY-1234/23958934"
 
 //Максимально допустимый уровень шума в помещении хакатона.
+const val maxNoise: Int = 99
 
 //Индикатор превышения уровня шума в помещениях
+var noise: Int = 0
+    get() = field
+    set(value) {
+        "получаем данные с датчика уровня шума"
+        field = value
+    }
+
+var noiseLevel: String = ""
+    set(value) {
+        if (noise > maxNoise)
+        field = "вырубайте шарманку!"
+    }
 
 //Формат мероприятия (зависит от геополитической обстановки)
+var geopoliticalSituation: String ="" // дружим, воюем, опасаемся
+var eventFormat: String = "публичное мероприятие"
+    set(value) {
+        if (geopoliticalSituation != "дружим")
+        field = "Атас, менты всем улыбаться"
+    }
 
 //Количество свободных мест для отдыха (например, кресел или диванов), сеттер валидирует, чтобы количество не было
 // меньше нуля.
+var freePlacesRest: Int = 100
+    get() = field
+    set(value) {
+        if (field <= 0)
+            print("Местов нет!")
+    }
 
 //План взаимодействия с прессой
+val pressWorkPlan: String by lazy {
+    "путь к планам"
+}
 
 //Детальная информация о проектах каждой команды, сбор данных включает в себя компиляцию кода и сбор статистики прогона
 // автоматизированных проверок.
+var teamPproject: String = "путь к проекту отдельной команды"
+
+var listTeamsProject: String = ""
+    get() = field
+    set(value) {
+        field + teamPproject
+        field = value
+    }
 
 //Статус получения всех необходимых разрешений
+var permissionsStatus: Boolean = false
 
 //Указывает, открыт ли доступ к эксклюзивным ресурсам (например, специальному оборудованию)
+var accessExclusive by Delegates.notNull<Boolean>() //я без понятия что это, мне так идея код исправила
 
 //Список партнеров мероприятия
+val listPartners: String = "путь к списку"
 
 //Отчет, включающий фотографии, видео и отзывы, генерируется и становится доступен после завершения мероприятия.
+lateinit var eventReport: String  //какой-то там путь где-то потом, если менты не прикроют лавочку
 
 //План распределения призов
+val prizeDistributionPlan: String = "путь к плану"
 
 //Контактная информация экстренных служб, медицинского персонала и других важных служб, недоступная участникам.
+
 
 //Особые условия для участников с ограниченными возможностями
 
