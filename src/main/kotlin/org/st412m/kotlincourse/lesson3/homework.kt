@@ -29,13 +29,12 @@ val expenses: String by lazy {
 // которое поместится)
 var numberParticipants: Int = 0
     set(value) {
-        if (value < maximumPeople ) {
+        if (field + value <= maximumPeople) {
             field += value
         } else {
-            print("Вы кто такие? Я вас не звал! Идите...")
+            println("Вы кто такие? Я вас не звал! Идите...")
         }
     }
-
 //Длительность хакатона(изменяемое, числовое, double, так как может измениться место, то и время так же может
 // меняться в зависимсти от договоренностей)
 var durationEvent: Double = 12.5
@@ -89,8 +88,7 @@ val freeEquipment: String = "путь к списку"
 var foodSupplier: String = ""
 var mealSchedule: String = ""
     set(value) {
-        if (foodSupplier in termsAgreements
-        )
+        if (foodSupplier in termsAgreements)
         field = value
     }
 
@@ -100,7 +98,7 @@ val contingencyPlan: String by lazy {
 }
 
 //Список экспертов и жюри
-val listExperts: String = "путь к файлу с экспертами и жюрями"
+val listExperts: String = "путь к файлу с экспертами и жюри"
 
 //Методы и процедуры для сбора отзывов от участников и гостей, включая анонимные опросы и интервью.(нужен один раз)
 val feedbackMethods: String by lazy {
@@ -196,6 +194,7 @@ var noiseLevel: String = ""
 
 //Формат мероприятия (зависит от геополитической обстановки)
 var geopoliticalSituation: String ="" // дружим, воюем, опасаемся
+    set(value) {}
 var eventFormat: String = "публичное мероприятие"
     set(value) {
         if (geopoliticalSituation != "дружим")
@@ -229,6 +228,7 @@ var listTeamsProject: String = ""
 
 //Статус получения всех необходимых разрешений
 var permissionsStatus: Boolean = false
+    set(value) {}
 
 //Указывает, открыт ли доступ к эксклюзивным ресурсам (например, специальному оборудованию)
 var accessExclusive by Delegates.notNull<Boolean>() //я без понятия что это, мне так идея код исправила
