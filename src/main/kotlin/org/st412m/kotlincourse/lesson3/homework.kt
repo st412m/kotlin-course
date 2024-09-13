@@ -35,8 +35,8 @@ var numberParticipants: Int = 0
             println("Вы кто такие? Я вас не звал! Идите...")
         }
     }
-//Длительность хакатона(изменяемое, числовое, double, так как может измениться место, то и время так же может
-// меняться в зависимсти от договоренностей)
+//Длительность хакатона(изменяемое, double, так как может измениться место, то и время так же может
+// меняться в зависимости от договоренностей)
 var durationEvent: Double = 12.5
 
 //Контактная информация и условия соглашений с поставщиками пищи, оборудования и других услуг.(лишним людям знать не
@@ -49,7 +49,7 @@ val termsAgreements: String by lazy {
 var eventStatus: String = ""
 
 //Список спонсоров (могут добавиться, могут соскочить, путь к файлу)
-lateinit var sponsorsList: String
+var sponsorsList: String = "путь к списку"
 
 //Бюджет мероприятия(изменяемый, т.к. спонсоры выше)
 var eventBudget: Double = 1_000_000.1
@@ -178,10 +178,10 @@ val securityProcedures: String by lazy {
 }
 
 //Регистрационный номер мероприятия
-const val regNumber: String = "QWERTY-1234/23958934"
+const val REGNUMBER: String = "QWERTY-1234/23958934"
 
 //Максимально допустимый уровень шума в помещении хакатона.
-const val maxNoise: Int = 99
+const val MAXNOISE: Int = 99
 
 //Индикатор превышения уровня шума в помещениях
 var noise: Int = 0
@@ -193,7 +193,7 @@ var noise: Int = 0
 
 var noiseLevel: String = ""
     set(value) {
-        if (noise > maxNoise)
+        if (noise > MAXNOISE)
         field = "вырубайте шарманку!"
     }
 
@@ -276,7 +276,7 @@ lateinit var specialGuest: String
 var maximumPeople: Int = 1000
 
 //Стандартное количество часов, отведенное каждой команде для работы над проектом.
-const val timeTask: Double = 2.5
+const val TIMETASK: Double = 2.5
 
 //Текущая температура в помещении
 //var indoorTemperature: Double = 0.0
