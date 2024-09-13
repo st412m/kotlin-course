@@ -21,14 +21,14 @@ var eventDay: String = "13.09.2024"
 var eventLocation: String = "г.Москва, ул.Пушкина, 'Дом Колотушкина'"
 
 //Подробный бюджет мероприятия, включая расходы на оборудование, кейтеринг и другие операционные расходы.
-val expenses: String by lazy {
+private val expenses: String by lazy {
     "путь к файлу, где вот это вот всё"
 }
 
 //Количество участников(изменяемое, числовое, целое, но не больше чем максимальное количества людей,
 // которое поместится)
 var numberParticipants: Int = 0
-    set(value) {
+    private set(value) {
         if (field + value < maximumPeople) {
             field += value
         } else {
@@ -37,19 +37,17 @@ var numberParticipants: Int = 0
     }
 //Длительность хакатона(изменяемое, double, так как может измениться место, то и время так же может
 // меняться в зависимости от договоренностей)
-var durationEvent: Double = 12.5
+var durationEvent: Long = 8*60*60
 
 //Контактная информация и условия соглашений с поставщиками пищи, оборудования и других услуг.(лишним людям знать не
 // обязательно)
-val termsAgreements: String by lazy {
-    "путь куда-то там к файлу со всей этой требухой"
-}
+private lateinit var termsAgreements: String
 
 //Текущее состояние хакатона (статус) (изменяемое, строковое, "начало, презентация, соревнование, награждение и т.п.")
-var eventStatus: String = ""
+var eventStatus: String = "подготовка"
 
 //Список спонсоров (могут добавиться, могут соскочить, путь к файлу)
-var sponsorsList: String = "путь к списку"
+val sponsorsList: String = "путь к списку"
 
 //Бюджет мероприятия(изменяемый, т.к. спонсоры выше)
 var eventBudget: Double = 1_000_000.1
@@ -72,9 +70,7 @@ var numberTeams: Int = 0
         field += value}
 
 //Перечень задач(если я правильно понял, это перечень задач для выполнения на хакатоне)
-val listTasks: String by lazy {
-    "путь к файлу с задачами"
-}
+lateinit var listTasks: String
 
 //План эвакуации (путь к файлу с планом)
 val evacuationPlan: String by lazy {
@@ -98,9 +94,7 @@ var mealSchedule: String = ""
     }
 
 //План мероприятий на случай сбоев
-val contingencyPlan: String by lazy {
-    "путь к плану"
-}
+lateinit var contingencyPlan: String
 
 //Список экспертов и жюри
 val listExperts: String = "путь к файлу с экспертами и жюри"
@@ -116,7 +110,9 @@ val privacyPolicy: String by lazy {
 }
 
 //Приватные отзывы (фидбэк) участников и зрителей для анализа проблем.
-val feedback: String = "путь к месту где эти отзывы собираются"
+val feedback: String by lazy {
+    "путь к месту где эти отзывы собираются"
+}
 
 //Текущая температура в помещении
 var indoorTemperature: Double = 0.0
@@ -216,9 +212,7 @@ var freePlacesRest: Int = 100
     }
 
 //План взаимодействия с прессой
-val pressWorkPlan: String by lazy {
-    "путь к планам"
-}
+lateinit var pressWorkPlan: String
 
 //Детальная информация о проектах каждой команды, сбор данных включает в себя компиляцию кода и сбор статистики прогона
 // автоматизированных проверок.
@@ -276,7 +270,7 @@ lateinit var specialGuest: String
 var maximumPeople: Int = 1000
 
 //Стандартное количество часов, отведенное каждой команде для работы над проектом.
-const val TIMETASK: Double = 2.5
+const val TIMETASK: Long = 3*60*60
 
 //Текущая температура в помещении
 //var indoorTemperature: Double = 0.0
