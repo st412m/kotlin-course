@@ -38,6 +38,7 @@ val stringSecond: String = "OpenAI"
 
 //“true” - в задании кривые кавычки. Какой хитрец.
 val stringThird: String = "true"
+val booleanPossible: Boolean = true
 
 //'9'
 val charSecond: Char = '9'
@@ -86,6 +87,7 @@ val stringSixth: String = "🤯"
 
 //‘65535’ - неправильные кавычки
 val stringSeventh: String = "65535"
+val intPossible: Int = 65535
 
 //72057594037927935L
 val longNumFifth: Long = 72057594037927935L
