@@ -17,8 +17,15 @@ val letter: Char = 'A' //всегда одиночные кавычки, все�
 // пустые кавчки)
 val text: String = "Hello world" // любой длины
 
-val numbers: Array<Int> = arrayOf(1, 2, 3)
-val strings: MutableList<String> = mutableListOf("one", "two", "four")
+val numbers: Array<Int> = arrayOf(1, 2, 3) //массив, типы указываются сразу
+val strings: MutableList<String> = mutableListOf("one", "two", "four") // изменяемый список, List - не изменяемый по
+// умолчанию, опять же с явным указанием типов
+val doubles: Set<Double> = setOf(23.3, 56.8) //неупорядоченный набор уникальных объектов
+
+val keysToValues: Map<String, String> = mapOf(   //словарь с ключами, типы переменных указываются сразу
+    "Key1" to "Value1",
+    "Key2" to "Value2"
+)
 
 
 val myIntNull: Int? = null // типы могут быть nullble добавляем "?" для обозначения
