@@ -105,8 +105,8 @@ val booleanFourth: Boolean = false
 //'x'
 val charFourth: Char = 'x'
 
-//314
-val intNumFifth: Int = 314
+//314 - short по приколу, чтобы было
+val intNumShort: Short = 314
 
 //123456789123456789L
 val longNumSixth: Long = 123456789123456789L
