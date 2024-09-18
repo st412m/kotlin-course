@@ -2,7 +2,7 @@ package org.st412m.kotlincourse.lesson5
 
 fun main(){
 
-    printSoundIntensity(initialSoundIntensity = 99.1, attenuationСoefficient = null)
+    printSoundIntensity(initialSoundIntensity = 99.1, attentCoeff = null)
     printFullPrice(priceCargo = null)
     dataVerification(temperature = null, humidity = null, airPressure = 735)
     dataVerification1(temperature1 = null, humidity1 = null, airPressure1 = null)
@@ -17,8 +17,8 @@ fun main(){
 // использовать стандартное значение 0.5.
 
 
-fun printSoundIntensity(initialSoundIntensity: Double, attenuationСoefficient: Double?){
-    var soundIntensity = (initialSoundIntensity * (attenuationСoefficient ?: 0.5))
+fun printSoundIntensity(initialSoundIntensity: Double, attentCoeff: Double?){
+    var soundIntensity = (initialSoundIntensity * (attentCoeff ?: 0.5))
     println(soundIntensity)
 }
 
