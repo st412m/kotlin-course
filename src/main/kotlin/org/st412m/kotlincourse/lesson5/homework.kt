@@ -6,7 +6,7 @@ fun main(){
     printFullPrice(priceCargo = null)
     dataVerification(temperature = null, humidity = null, airPressure = 735)
     dataVerification1(temperature1 = null, humidity1 = null, airPressure1 = null)
-    dataVerification2(temperature2 = null, humidity2 = null, airPressure2 = 735)
+    dataVerification2(temperature2 = null, humidity2 = null, airPressure2 = null)
 }
 
 //Контекст: Вы изучаете физическое явление затухания звука в помещении. У вас есть измеренное значение начальной
@@ -48,8 +48,7 @@ fun dataVerification1(temperature1: Int?, humidity1: Int?, airPressure1: Int?){
 }
 
 fun dataVerification2(temperature2: Int?, humidity2: Int?, airPressure2: Int?){
-    var x = airPressure2 ?: -1
-    if (x == -1) {
+    if (airPressure2 ?: -1 == -1) {
         println("Ты потерял давление!")
     }
 }
