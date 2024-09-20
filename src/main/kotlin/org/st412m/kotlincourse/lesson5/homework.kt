@@ -18,7 +18,7 @@ fun main(){
 
 
 fun printSoundIntensity(initialSoundIntensity: Double, attentCoeff: Double?){
-    var soundIntensity = (initialSoundIntensity * (attentCoeff ?: 0.5))
+    val soundIntensity = (initialSoundIntensity * (attentCoeff ?: 0.5))
     println(soundIntensity)
 }
 
@@ -28,7 +28,7 @@ fun printSoundIntensity(initialSoundIntensity: Double, attentCoeff: Double?){
 //Задача: Рассчитать полную стоимость доставки.
 
 fun printFullPrice(priceCargo: Double?) {
-    var fullPrice = ((0.5 / 100) * (priceCargo ?: 50.0)) + (priceCargo ?: 50.0)
+    val fullPrice = ((0.5 / 100) * (priceCargo ?: 50.0)) + (priceCargo ?: 50.0)
     println(fullPrice)
 }
 
@@ -48,7 +48,7 @@ fun dataVerification1(temperature1: Int?, humidity1: Int?, airPressure1: Int?){
 }
 
 fun dataVerification2(temperature2: Int?, humidity2: Int?, airPressure2: Int?){
-    if (airPressure2 ?: -1 == -1) {
+    if ((airPressure2 ?: -1) == -1) {
         println("Ты потерял давление!")
     }
 }
