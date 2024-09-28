@@ -23,7 +23,7 @@ fun main(){
     println(encrypt("Kotlin"))
     println(decrypt("oKltni"))
     println("---доп.задача 3-----")
-    multiplicationTable(30, 30)
+    multiplicationTable(20, 20)
 
 
 }
@@ -157,7 +157,13 @@ fun decrypt(cipher: String): String{
 
 fun multiplicationTable(column: Int, line:Int){
     val lineWidth = (line.toString()).length
+    print(" ".repeat(lineWidth + 1)) // Пустое место в начале
+    for(i in 1..column){         // заголовок строки
+        print(" %${lineWidth + 1}s".format(i))
+    }
+    println()
     for (i in 1..column){
+        print("%${lineWidth + 1}s".format(i))  // первая колонка
         for (z in 1..line){
             val result = (i*z).toString()
             print(" %${lineWidth + 1}s".format(result))
