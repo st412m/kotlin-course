@@ -86,7 +86,7 @@ fun filePath(path: String){
 //букв слов (например, "ООП").
 
 fun abbreviation(phrase1: String){
-    var forSplit = " ".trim()
+    var forSplit = ""
     for (i in phrase1.indices) {  //for (i in 0 until phrase1.length)
         if (phrase1[i] == ' ' || phrase1[i] == '-'){
             forSplit += "/"
@@ -97,7 +97,6 @@ fun abbreviation(phrase1: String){
         print(abbrList[j][0].uppercase())
     }
 }
-
 
 //Дополнительные задания
 //Написать метод, который преобразует строку из нескольких слов в строку, где каждое слово начинается с заглавной буквы а
