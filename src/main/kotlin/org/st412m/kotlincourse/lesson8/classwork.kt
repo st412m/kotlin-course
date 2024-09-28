@@ -76,7 +76,7 @@ fun main() {
 """.trimIndent()
     println(text.format(name, city, age1, friendsCount, rating, balance))
 
-    println(convert("Для завершения проекта важно"))
+    println(convert1("Для завершения проекта важно"))
 
     val text1 = "Kotlin: The Fun Way to Learn Programming"  // выводим The Fun Way
     println(text1.substring(8, 19))
@@ -92,7 +92,7 @@ fun main() {
 
 class Person(val name: String, val age: Int)
 
-fun convert(string: String): String{
+fun convert1(string: String): String{
     return when{
         string.startsWith("ошибка", true) -> string.replace("ошибка","недоразумение",true)
         string.endsWith("важно", true) -> "$string  ...Для завершения проекта важно"
