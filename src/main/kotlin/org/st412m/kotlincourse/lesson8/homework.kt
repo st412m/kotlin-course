@@ -22,6 +22,8 @@ fun main(){
     println("---доп.задача 2-----")
     println(encrypt("Kotlin"))
     println(decrypt("oKltni"))
+    println("---доп.задача 3-----")
+    multiplicationTable(30, 30)
 
 
 }
@@ -152,3 +154,14 @@ fun decrypt(cipher: String): String{
 
 //Для усложнения задачи, можно в метод передавать размерность таблицы по вертикали и горизонтали и динамически
 //рассчитывать количество пробелов для форматирования.
+
+fun multiplicationTable(column: Int, line:Int){
+    val lineWidth = (line.toString()).length
+    for (i in 1..column){
+        for (z in 1..line){
+            val result = (i*z).toString()
+            print(" %${lineWidth + 1}s".format(result))
+        }
+        println()
+    }
+}
