@@ -23,7 +23,7 @@ fun main(){
     println(encrypt("Kotlin"))
     println(decrypt("oKltni"))
     println("---доп.задача 3-----")
-    multiplicationTable(20, 20)
+    multiplicationTable(20, 15)
 
 
 }
@@ -95,7 +95,7 @@ fun filePath(path: String){
 fun abbreviation(phrase1: String): String {
     val abbrList = phrase1.split(' ', '-')
     var abbrPhrase = ""
-    for (j in abbrList.indices) {
+    for (j in abbrList.indices) { //for (i in 0 until abbrList.length)
         abbrPhrase += (abbrList[j][0].uppercase())
     }
     return abbrPhrase
@@ -158,7 +158,7 @@ fun decrypt(cipher: String): String{
 fun multiplicationTable(column: Int, line:Int){
     val lineWidth = (line.toString()).length
     print(" ".repeat(lineWidth + 1)) // Пустое место в начале
-    for(i in 1..column){         // заголовок строки
+    for(i in 1..line){         // заголовок строки
         print(" %${lineWidth + 1}s".format(i))
     }
     println()
