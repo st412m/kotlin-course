@@ -16,7 +16,12 @@ fun main(){
     println("---задача 4-----")
     filePath("C:/Пользователи/Документы/report.txt")
     println("---задача 5-----")
-    abbreviation("Объектно-ориентированное программирование")
+    println(abbreviation("Объектно-ориентированное программирование"))
+    println("---доп.задача 1-----")
+    println(upperChars("Муля не нервируй меня"))
+    println("---доп.задача 2-----")
+    println(encrypt("Kotlin"))
+    println(decrypt("oKltni"))
 
 
 }
@@ -85,17 +90,13 @@ fun filePath(path: String){
 //Описание: У вас есть фраза, например "Объектно-ориентированное программирование". Создайте аббревиатуру из начальных
 //букв слов (например, "ООП").
 
-fun abbreviation(phrase1: String){
-    var forSplit = ""
-    for (i in phrase1.indices) {  //for (i in 0 until phrase1.length)
-        if (phrase1[i] == ' ' || phrase1[i] == '-'){
-            forSplit += "/"
-        } else forSplit += phrase1[i]
+fun abbreviation(phrase1: String): String {
+    val abbrList = phrase1.split(' ', '-')
+    var abbrPhrase = ""
+    for (j in abbrList.indices) {
+        abbrPhrase += (abbrList[j][0].uppercase())
     }
-    val abbrList = forSplit.split('/')
-    for (j in abbrList.indices){
-        print(abbrList[j][0].uppercase())
-    }
+    return abbrPhrase
 }
 
 //Дополнительные задания
@@ -103,13 +104,45 @@ fun abbreviation(phrase1: String){
 //все остальные - строчные. (можно использовать такой же подход как в задании 5, но накапливать не первые буквы а целиком
 //слова, составленные из первой буквы с uppercase и оставшейся части слова)
 
-
-
+fun upperChars(phrase2: String): String {
+    val splitPhase = phrase2.split(" ")
+    var capitalPhrase2 = ""
+    for (j in splitPhase.indices) {
+        capitalPhrase2 +=  ("${splitPhase[j].replaceFirstChar(Char::uppercase)} ")
+    }
+    return capitalPhrase2
+}
 
 //Написать шифратор/дешифратор для строки. Шифровка производится путём замены двух соседних букв между собой: Kotlin
 //шифруется в oKltni. Дешифровка выполняется аналогично. Если длина строки - нечётная, в конец добавляется символ пробела
 //до начала шифрования. Таким образом все шифрованные сообщения будут с чётной длинной. Должно получиться два публичных
 //метода: encrypt() и decrypt() которые принимают и возвращают строку.
+
+fun encrypt(cipher: String): String{
+    var forCrypt = cipher
+    if(cipher.length % 2 !=0){
+        forCrypt += " "
+    }else {
+        Unit
+    }
+    var encrypted = ""
+    for(i in forCrypt.indices step 2){
+        val symbol1 = forCrypt[i]
+        val symbol2 = forCrypt[i + 1]
+        encrypted += symbol2.toString() + symbol1.toString()
+    }
+    return encrypted
+}
+
+fun decrypt(cipher: String): String{
+    var decrypted = ""
+    for(i in cipher.indices step 2){
+        val symbol1 = cipher[i]
+        val symbol2 = cipher[i + 1]
+        decrypted += symbol2.toString() + symbol1.toString()
+    }
+    return decrypted
+}
 
 //Вывести таблицу умножения в консоль так, чтобы были ровные строки и столбцы. В заголовках столбцов и строк -
 //числа для перемножения. В перекрестии - результат умножения. Каждый столбец должен быть выровнен по правому краю.
