@@ -19,6 +19,7 @@ fun main(){
     println(abbreviation("Объектно-ориентированное программирование"))
     println("---доп.задача 1-----")
     println(upperChars("Муля не нервируй меня"))
+    println(upperChars1("Муля не нервируй меня"))
     println("---доп.задача 2-----")
     println(encrypt("Kotlin"))
     println(decrypt("oKltni"))
@@ -112,8 +113,20 @@ fun upperChars(phrase2: String): String {
     for (j in splitPhase.indices) {
         capitalPhrase2 +=  ("${splitPhase[j].replaceFirstChar(Char::uppercase)} ")
     }
-    return capitalPhrase2
+    return capitalPhrase2.trim()
 }
+
+fun upperChars1(phrase2: String): String {
+    val splitPhrase = phrase2.split(" ")
+    var capitalPhrase2 = ""
+    for (i in splitPhrase) {
+        if (i.isNotEmpty()) {
+            capitalPhrase2 += i[0].uppercase() + i.substring(1) + " "
+        }
+    }
+    return capitalPhrase2.trim()
+}
+
 
 //Написать шифратор/дешифратор для строки. Шифровка производится путём замены двух соседних букв между собой: Kotlin
 //шифруется в oKltni. Дешифровка выполняется аналогично. Если длина строки - нечётная, в конец добавляется символ пробела
