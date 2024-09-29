@@ -119,10 +119,8 @@ fun upperChars(phrase2: String): String {
 fun upperChars1(phrase2: String): String {
     val splitPhrase = phrase2.split(" ")
     var capitalPhrase2 = ""
-    for (i in splitPhrase) {
-        if (i.isNotEmpty()) {
-            capitalPhrase2 += i[0].uppercase() + i.substring(1) + " "
-        }
+    for (j in splitPhrase) {
+        capitalPhrase2 += j[0].uppercase() + j.substring(1) + " "
     }
     return capitalPhrase2.trim()
 }
