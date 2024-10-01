@@ -24,7 +24,7 @@ fun main(){
     println(encrypt("Kotlin"))
     println(decrypt("oKltni"))
     println("---доп.задача 3-----")
-    multiplicationTable(20, 15)
+    multiplicationTable(-8, 12)
 
 
 }
@@ -167,18 +167,49 @@ fun decrypt(cipher: String): String{
 //рассчитывать количество пробелов для форматирования.
 
 fun multiplicationTable(column: Int, line:Int){
-    val lineWidth = (line.toString()).length
+    val lineWidth = ((line * column).toString()).length  // ищем самое длинное число с точки зрения символов
     print(" ".repeat(lineWidth + 1)) // Пустое место в начале
-    for(i in 1..line){         // заголовок строки
-        print(" %${lineWidth + 1}s".format(i))
+    if (line > 0){
+        for(i in 1..line) {
+            print(" %${lineWidth + 1}s".format(i))
+        }
+    } else if (line < 0) {
+        for (i in -1 downTo line) {
+            print(" %${lineWidth + 1}s".format(i))
+        }
     }
     println()
-    for (i in 1..column){
-        print("%${lineWidth + 1}s".format(i))  // первая колонка
-        for (z in 1..line){
-            val result = (i*z).toString()
-            print(" %${lineWidth + 1}s".format(result))
+    if (column > 0) {
+        for (i in 1..column) {
+            print("%${lineWidth + 1}s".format(i))
+            if (line > 0) {
+                for (z in 1..line) {
+                    val result = (i * z).toString()
+                    print(" %${lineWidth + 1}s".format(result))
+                }
+            } else if (line < 0) {
+                for (z in -1 downTo line) {
+                    val result = (i * z).toString()
+                    print(" %${lineWidth + 1}s".format(result))
+                }
+            }
+            println()
         }
-        println()
+    } else if (column < 0) {
+        for (i in -1 downTo column) {
+            print("%${lineWidth + 1}s".format(i))
+            if (line > 0) {
+                for (z in 1..line) {
+                    val result = (i * z).toString()
+                    print(" %${lineWidth + 1}s".format(result))
+                }
+            } else if (line < 0) {
+                for (z in -1 downTo line) {
+                    val result = (i * z).toString()
+                    print(" %${lineWidth + 1}s".format(result))
+                }
+            }
+            println()
+        }
     }
 }
