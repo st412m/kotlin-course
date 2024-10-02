@@ -9,7 +9,7 @@ package org.st412m.kotlincourse.lesson9
 
 
 fun main(){
-    happyBirthday("Александр", "\ud83c\udf81")  //впиши имя и добавь подарок
+    happyBirthday("Александр", "\ud83c\udf81")  //впиши имя и добавь подарок наверное можно и просто эмодзи вставить
 }
 fun happyBirthday(name: String, emoji: String) {
     var greeting = "С днем рождения"
