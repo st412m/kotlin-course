@@ -115,10 +115,11 @@ fun upperChars(phrase2: String): String {
     }
     return capitalPhrase2.trim()
 }
-
+//салтыков - щедрин
 fun upperChars1(phrase2: String): String {
     val splitPhrase = phrase2.split(" ")
     var capitalPhrase2 = ""
+
     for (j in splitPhrase) {
         capitalPhrase2 += j[0].uppercase() + j.substring(1) + " "
     }
