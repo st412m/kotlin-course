@@ -20,7 +20,7 @@ fun happyBirthday(name: String, emoji: String) {
     }
     var border = ""
     when {name.length < 7 -> {
-        border = emoji.repeat((greeting.length + 2) / emoji.length)
+        border = emoji.repeat((greeting.length + 4) / emoji.length)
     }
         else -> {
             border = emoji.repeat((greeting.length + 3) / emoji.length)
