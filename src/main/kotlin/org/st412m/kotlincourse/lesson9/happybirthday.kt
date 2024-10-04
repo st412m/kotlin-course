@@ -10,7 +10,8 @@ package org.st412m.kotlincourse.lesson9
 
 
 fun main(){
-    happyBirthday("Александр", "\ud83c\udf89")  //впиши имя и добавь подарок наверное можно и просто эмодзи вставить
+    happyBirthday("Александр", "\ud83c\udf89")  //впиши имя и добавь подарок наверное можно и просто эмодзи
+// вставить
 }
 fun happyBirthday(name: String, emoji: String) {
     var greeting = "С днем рождения"
@@ -18,17 +19,28 @@ fun happyBirthday(name: String, emoji: String) {
         greeting = "$greeting!"
     } else { greeting = "$greeting, ${name}!"
     }
+    var defaultEmoji = ""
+    if (emoji.isEmpty()) {
+        defaultEmoji = "\uD83D\uDD95"
+    } else {
+        defaultEmoji = emoji
+    }
     var border = ""
-    when {name.length < 7 -> {
-        border = emoji.repeat((greeting.length + 4) / emoji.length)
-    }
-        else -> {
-            border = emoji.repeat((greeting.length + 3) / emoji.length)
+        when {
+            name.length < 7 -> {
+                border = defaultEmoji.repeat((greeting.length + 4) / defaultEmoji.length)
+            }
+
+            else -> {
+                border = defaultEmoji.repeat((greeting.length + 3) / defaultEmoji.length)
+            }
         }
-    }
-    println(border)
-    println("$emoji $greeting $emoji")
-    println(border)
+        println(border)
+        println("$defaultEmoji $greeting $defaultEmoji")
+        println(border)
 }
+
+
+
 
 
