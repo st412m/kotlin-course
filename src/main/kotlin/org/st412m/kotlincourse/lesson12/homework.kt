@@ -47,6 +47,9 @@ fun main(){
 
     println("----Задача 5-----")
     println(processList(ss = listOf("один", "два", "три", null, "пять")))
+
+    println("----РЕФАКТОРИНГ----")
+    drawRectangle(10, 5)
 }
 
 //Напишите сигнатуру функции, которая не принимает аргументов и не возвращает значения.
@@ -157,3 +160,70 @@ fun processList(ss: List<String?>) {
         }
     }
 }
+
+/*
+Сделай рефакторинг функции, через определение вспомогательных приватных функций. Требуется избавиться от дублирования
+кода и трудно воспринимаемых фрагментов.
+
+Сначала сделай запуск функции и посмотри на результат её работы. Сделай запуск после рефакторинга и проверь, чтобы
+результат работы был аналогичным.
+ */
+
+private fun checkSize(size: Int, nameArg: String) {
+    if (size <= 0) throw IllegalArgumentException("$nameArg должно быть положительным и больше нуля")
+}
+
+private fun lines(sizeW: Int, sizeH: Int,  horizontal: Boolean) {
+    if (horizontal) {
+        for (i in 1 until sizeH - 1) {
+            var middleLine = "|"
+            for (j in 1 until sizeW - 1) {
+                middleLine += " "
+            }
+            middleLine += "|\n"
+            print(middleLine)
+        }
+    }
+    var line = "+"
+    for (i in 1 until sizeW - 1) {
+        line += "-"
+    }
+    line += "+\n"
+    print(line)
+}
+
+fun drawRectangle(width: Int, height: Int) {
+//    if (width <= 0) throw IllegalArgumentException("width должно быть положительным и больше нуля")
+//    if (height <= 0) throw IllegalArgumentException("height должно быть положительным и больше нуля")
+    checkSize(width, "width")
+    checkSize(height, "height")
+
+    // Верхняя граница
+//    var topLine = "+"
+//    for (i in 1 until width - 1) {
+//        topLine += "-"
+//    }
+//    topLine += "+\n"
+//    print(topLine)
+    lines(width, height,false)
+
+    // Боковые границы
+//    for (i in 1 until height - 1) {
+//        var middleLine = "|"
+//        for (j in 1 until width - 1) {
+//            middleLine += " "
+//        }
+//        middleLine += "|\n"
+//        print(middleLine)
+//    }
+    lines(width, height,true)
+
+    // Нижняя граница
+//    var bottomLine = "+"
+//    for (i in 1 until width - 1) {
+//        bottomLine += "-"
+//    }
+//    bottomLine += "+\n"
+//    print(bottomLine)
+}
+
