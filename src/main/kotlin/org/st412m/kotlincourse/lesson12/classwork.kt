@@ -103,7 +103,7 @@ private fun createRange(size: Int): IntProgression {
     }
 }
 
-fun printMap(xSize: Int, ySize: Int) {
+fun printMap1(xSize: Int, ySize: Int) {
     checkSize(xSize, "xSize")  // вызывается закомменченый код через privat fun
     checkSize(ySize, "ySize")
 //    if (xSize == 0) throw IllegalArgumentException("xSize не должно быть равным нулю")
