@@ -101,7 +101,6 @@ filterNotNull
 // Отсортировать список по убыванию
     println(textList.sortedDescending())
 
-
 // Распечатать квадраты элементов списка
     println(numbersList.map { it * it })
 
@@ -149,7 +148,7 @@ filterNotNull
     println(characteristicListNumbers(sticky))
     val negative = listOf<Int>(-100, -99, -10, -50, -60)
     println(characteristicListNumbers(negative))
-    val positive = listOf<Int>(1001, 10000, 100000, 1000000, 10000001)
+    val positive = listOf<Int>(1001, 1002, 1003, 1024, 1016)
     println(characteristicListNumbers(positive))
     val pussy = listOf<Int>(1, 2, 3, 10, 14)
     println(characteristicListNumbers(pussy))
@@ -162,8 +161,13 @@ filterNotNull
 Начальные значения: val grades = listOf(85, 58, 90, 74, 88, 67, 95, 92, 50, 42, 12)
 Цель: Отфильтровать удовлетворительные оценки (>=60), отсортировать оставшиеся по возрастанию и взять первые 3.
  */
+    println("-----Задание 3 ------")
     val grades = listOf(85, 58, 90, 74, 88, 67, 95, 92, 50, 42, 12)
-    println(((grades.filter { it>=60 }).sorted()).take(3))
+    println(
+        grades.filter { it >= 60 }
+            .sorted()
+            .take(3)
+    )
 
     /*
 Задание 4: Создание каталога по первой букве.
@@ -176,6 +180,7 @@ filterNotNull
 
 Цель: Привести все слова в списке к нижнему регистру, сгруппировать в каталог по первой букве.
  */
+    println("-----Задание 4 ------")
     val list = listOf(
         "Стол", "табурет", "ваза", "Кружка", "Зеркало", "ковер", "Шкаф", "часы", "Люстра", "подушка", "Картина", "столик",
         "Вазон", "шторы", "Пуф", "книга", "Фоторамка", "светильник", "Коврик", "вешалка", "Подставка", "телевизор", "Комод",
@@ -183,7 +188,9 @@ filterNotNull
         "Ключница", "плед", "Тумба", "игрушка", "Настенные часы", "подсвечник", "Журнальный столик", "сувенир",
         "Корзина для белья", "посуда", "Настольная лампа", "торшер", "Этажерка")
 
-    println((list.map { it.lowercase() }).groupBy { it[0] })
+    println(list.map { it.lowercase() }
+        .groupBy { it[0] }
+    )
 
     /*
 Задание 5: Подсчёт средней длины слов в списке.
@@ -191,6 +198,7 @@ filterNotNull
 Цель: Перевести все слова в количество букв, подсчитать среднее значение.
 Вывести форматированный текст с двумя знаками после запятой.
 */
+    println("-----Задание 5 ------")
     println("Средняя длина: %.2f".format((list.map { it.length }).average()))
 
     /*
@@ -198,6 +206,7 @@ filterNotNull
 Начальные значения: val numbers = listOf(1, 3, 5, 7, 3, 1, 8, 9, 9, 7)
 Цель: Отобрать уникальные числа, отсортировать по убыванию и сгруппировать по четности (“четные” и “нечетные”).
  */
+    println("-----Задание 6 ------")
     val numbers = listOf(1, 3, 5, 7, 3, 1, 8, 9, 9, 7)
     println(((numbers.distinct()).sortedDescending()).groupBy { if (it % 2 == 0) "четные" else "нечетные" })
 
@@ -207,8 +216,9 @@ filterNotNull
 Цель: Найти первый возраст в списке, который соответствует условию (больше 18), преобразовать его к строке,
 или вернуть сообщение "Подходящий возраст не найден".
  */
+    println("-----Задание 7 ------")
     val ages = listOf(22, 18, 30, 45, 17, null, 60)
-    println(ages.firstOrNull { it != null && it > 18 }?.toString() ?: "Подходящий возраст не найден")
+    println(ages.filterNotNull().firstOrNull{ it > 18 }?.toString() ?: "Подходящий возраст не найден")
 
 }
 
@@ -218,10 +228,10 @@ fun characteristicListNumbers(numList: List<Int>): String {
         numList.size < 5 -> "Короткая"
         numList.getOrNull(0) == 0 -> "Стартовая"
         numList.sum() > 10000 -> "Массивная"
+        numList.min() > 1000 -> "Положительная"
         numList.average() == 10.0 -> "Сбалансированная"
         numList.joinToString("").length == 20 -> "Клейкая"
-        numList.maxOrNull()!! <= -10 -> "Отрицательная"
-        numList.minOrNull()!! > 1000 -> "Положительная"
+        numList.max() <= -10 -> "Отрицательная"
         numList.contains(3) && numList.contains(14) -> "Пиздатая"
         else -> "Уникальная"
     }
