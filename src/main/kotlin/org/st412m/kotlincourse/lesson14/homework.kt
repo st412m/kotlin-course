@@ -145,6 +145,7 @@ fun main(){
  */
     val testResult2 = mutableMapOf(1 to 120, 2 to 100, 3 to 14, 4 to 88, 5 to 666)
     val archTestResult2: Map<String, Int> = testResult2.mapKeys { (id, _) -> getNameById(id) }.toMap()
+    //val archTestResult2: Map<String, Int> = testResult2.map { (id, value) -> getNameById(id) to value }.toMap()
     println(archTestResult2)
 
 /*
@@ -153,6 +154,7 @@ fun main(){
  */
     val perfAss = mutableMapOf<String, Int>()
     perfAss.mapValues { it.value * 1.10 }
+    //perfAss.map { it.key to (it.value * 1.10).toInt() }.toMap()
 
 /*
 Проверьте, пуст ли словарь с ошибками компиляции тестов.
