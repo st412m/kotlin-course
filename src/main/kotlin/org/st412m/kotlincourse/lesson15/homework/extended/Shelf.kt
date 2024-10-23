@@ -58,4 +58,8 @@ class Shelf(
     fun info(): List<String> {
          return items.toList()
     }
+
+    fun freeSpace(): Int {
+         return capacity - items.sumOf { it.length }
+    }
 }

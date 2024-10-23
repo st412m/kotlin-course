@@ -70,7 +70,13 @@ class Rack (
     }
 
     fun addItem(item: Item): Boolean {
-        val freeShelf = shelves.maxByOrNull {}
+        val freeShelf = shelves.maxByOrNull {it.freeSpace()}
+        if (freeShelf != null && freeShelf.canAccommodate(item)) {
+            freeShelf.addItem(item)
+            return true
+        } else {
+            println("Недостаточно места на всех полках для ${item.name}")
+            return false
+        }
     }
-
 }
