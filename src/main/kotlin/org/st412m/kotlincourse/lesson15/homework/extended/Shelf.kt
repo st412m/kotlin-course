@@ -41,6 +41,7 @@ class Shelf(
             println("${item.name} удален с полки")
             return true
         }else {
+            println("${item.name} не лежит на полке")
             return false
         }
     }
@@ -51,10 +52,15 @@ class Shelf(
             println("${item.name} помещается")
             return true
         } else {
-            println("Недостаточно места на полке")
+            println("${item.name}, размером ${item.size}, не помещается. Недостаточно места на полке")
             return false
         }
     }
+
+    fun isExists(item: Item): Boolean {
+        return item.name in items
+    }
+
     fun info(): List<String> {
          return items.toList()
     }

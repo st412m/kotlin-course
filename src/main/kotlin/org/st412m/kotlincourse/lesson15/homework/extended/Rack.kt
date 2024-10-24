@@ -50,17 +50,17 @@ class Rack (
             return false
         }
         if (shelf in shelves) {
-            println("$shelf установлена ранее")
+            println("Полка установлена ранее")
             return false
         }
         shelves.add(shelf)
-        println("$shelf добавлена")
+        println("Полка добавлена")
         return true
     }
 
     fun removeShelf(index: Int): Boolean {
         if (index in shelves.indices) {
-            println("${shelves[index]} удалена")
+            println("Полка удалена")
             shelves.removeAt(index)
             return true
         } else {
@@ -91,13 +91,22 @@ class Rack (
         return false
     }
 
+    fun isExists(item: Item): Boolean {
+        for (shelf in shelves) {
+            if (shelf.isExists(item)) {
+                return true
+            }
+        }
+        return false
+    }
+
     fun shelvesList(): List<Shelf> {
         return shelves.toList()
     }
 
     fun printContents() {
         for (shelf in shelves.indices) {
-            println("Полка №$shelf, вместимостью ${shelves[shelf].capacity} единиц, свободное пространство - " +
+            println("Полка, вместимостью ${shelves[shelf].capacity} единиц, свободное пространство - " +
                     "${shelves[shelf].freeSpace()} единиц, содержит ${shelves[shelf].info()}")
         }
     }
