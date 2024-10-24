@@ -167,4 +167,6 @@ fun main() {
     rack1.advancedRemoveShelf(10)
     rack1.advancedRemoveShelf(1)
 
+    //
+
 }
