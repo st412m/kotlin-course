@@ -22,8 +22,8 @@ package org.st412m.kotlincourse.lesson15.homework.extended
  */
 
 class Shelf(
-    private val capacity: Int,
-    private val items: MutableList<String> = mutableListOf()
+    val capacity: Int,
+    val items: MutableList<String> = mutableListOf()
 ) {
     fun addItem(item: Item): Boolean {
         if (canAccommodate(item)) {

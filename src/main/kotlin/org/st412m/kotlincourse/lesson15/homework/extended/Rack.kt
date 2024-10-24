@@ -60,8 +60,8 @@ class Rack (
 
     fun removeShelf(index: Int): Boolean {
         if (index in shelves.indices) {
-            shelves.removeAt(index)
             println("${shelves[index]} удалена")
+            shelves.removeAt(index)
             return true
         } else {
             println("Такой полки не существует")
@@ -79,4 +79,50 @@ class Rack (
             return false
         }
     }
+
+    fun removeItem(item: Item): Boolean {
+        for (shelf in shelves) {
+            if (item.name in shelf.info()) {
+                shelf.removeItem(item)
+                return true
+            }
+        }
+        println("${item.name} не найден")
+        return false
+    }
+
+    fun shelvesList(): List<Shelf> {
+        return shelves.toList()
+    }
+
+    fun printContents() {
+        for (shelf in shelves.indices) {
+            println("Полка №$shelf, вместимостью ${shelves[shelf].capacity} единиц, свободное пространство - " +
+                    "${shelves[shelf].freeSpace()} единиц, содержит ${shelves[shelf].info()}")
+        }
+    }
+
+    fun advancedRemoveShelf(index: Int): Boolean {
+        if (index !in shelves.indices) {
+            println("Полки с индексом $index не существует")
+            return false
+        }
+        val itemsForMoving = shelves[index].info().map { it -> Item(it, it.length) }
+        val remainingItems = mutableListOf<String>()
+        for (item in itemsForMoving) {
+            val freeShelf = shelves.filterIndexed {  i, _ -> i != index }.maxByOrNull { it.freeSpace() }
+            if (freeShelf != null && freeShelf.canAccommodate(item)) {
+                freeShelf.addItem(item)
+            } else {
+                remainingItems.add(item.name)
+                println("Не удалось разместить ${item.name}, пропускаем этот предмет")
+            }
+        }
+        println("Удаляем полку. Остались предметы: ${remainingItems.toString()}")
+        shelves.removeAt(index)
+        return true
+    }
+
+
+
 }
