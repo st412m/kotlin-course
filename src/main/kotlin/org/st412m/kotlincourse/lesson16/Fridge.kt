@@ -18,9 +18,6 @@ class Fridge(val capacity: Int) {
     }
 
     fun removeSectionWithRedistribution(section: Section): List<Item> {
-        if (!sections.contains(section)) {
-            return emptyList()
-        }
         val itemsToRedistribute = mutableListOf<Item>()
 
         while (true) {
