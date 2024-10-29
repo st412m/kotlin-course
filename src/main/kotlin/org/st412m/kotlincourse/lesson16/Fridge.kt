@@ -5,12 +5,7 @@ class Fridge(val capacity: Int) {
     private val sections = mutableListOf<Section>()
 
     fun addSection(section: Section): Boolean {
-        return if (sections.size < capacity) {
-            sections.add(section)
-            true
-        } else {
-            false
-        }
+        return sections.size < capacity && sections.add(section)
     }
 
     fun removeSectionsByType(type: String): Boolean {
