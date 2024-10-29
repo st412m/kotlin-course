@@ -18,9 +18,9 @@ class Section(
 
     fun findItemByName(name: String): Item? {
         if (name.isEmpty()) {
-            return items.firstOrNull()
+            return items.firstOrNull()  // Только для пустой строки возвращаем первый элемент
         }
-        return items.find { it.name == name } ?: items.firstOrNull() // Если не найден, возвращаем первый элемент или null
+        return items.find { it.name == name }  // Для непустой строки ищем только по имени
     }
 
     fun remove(item: Item): Boolean {

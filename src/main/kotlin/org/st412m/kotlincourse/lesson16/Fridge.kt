@@ -19,17 +19,35 @@ class Fridge(val capacity: Int) {
 
     fun removeSectionWithRedistribution(section: Section): List<Item> {
         val itemsToRedistribute = mutableListOf<Item>()
-
-        while (true) {
-            val item = section.findItemByName("") ?: break
+        var item = section.findItemByName("")
+        while (item != null) {
             itemsToRedistribute.add(item)
             section.remove(item)
+            item = section.findItemByName("")
         }
-        sections.remove(section)
+        val suitableSectionsSorted = sections
+            .filter { it != section && it.type == section.type }
+            .sortedByDescending { it.getFreeSpace() }
+
         val unplacedItems = mutableListOf<Item>()
+
         for (item in itemsToRedistribute) {
-            val suitableSection = sections.filter { it.type == item.type }.maxByOrNull { it.getFreeSpace() }
-            if (suitableSection?.addItem(item) != true) {unplacedItems.add(item)}
+            var placed = false
+            for (targetSection in suitableSectionsSorted) {
+                if (targetSection.addItem(item)) {
+                    placed = true
+                    break
+                }
+            }
+            if (!placed) {
+                unplacedItems.add(item)
+            }
+        }
+
+        if (unplacedItems.isNotEmpty()) {
+            unplacedItems.forEach { section.addItem(it) }
+        } else {
+             sections.remove(section)
         }
 
         return unplacedItems

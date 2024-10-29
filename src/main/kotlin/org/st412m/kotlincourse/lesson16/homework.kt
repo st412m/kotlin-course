@@ -91,13 +91,6 @@ fun main() {
     println(fridge.removeItem(item25))
     println(fridge.removeAllItemsByName("Orange"))
     println(fridge.removeSectionWithRedistribution(sections[0]))
-    println(fridge.removeSectionWithRedistribution(sections[1]))
-    println(fridge.removeSectionWithRedistribution(sections[2]))
-    println(fridge.removeSectionWithRedistribution(sections[3]))
-    println(fridge.removeSectionWithRedistribution(sections[4]))
-    println(fridge.removeSectionWithRedistribution(sections[5]))
-    println(fridge.removeSectionWithRedistribution(sections[6]))
-    println(fridge.removeSectionWithRedistribution(sections[7]))
-    println(fridge.removeSectionWithRedistribution(sections[8]))
+
 
 }
