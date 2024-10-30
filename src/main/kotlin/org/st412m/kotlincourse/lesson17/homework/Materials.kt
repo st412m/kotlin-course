@@ -43,24 +43,17 @@ class MaterialsBottom(): Materials(){
     }
 }
 
-class ThroughTheLine(): Materials(){
+class ThroughTheLine : Materials() {
     fun alternation(newMaterials: List<String>) {
         val currentMaterials = extractMaterial()
+        val maxSize = maxOf(newMaterials.size, currentMaterials.size)
         val result = mutableListOf<String>()
 
-        var i = 0 // - новые штуки
-        var j = 0 // - старые штуки
-
-        while (i < newMaterials.size || j < currentMaterials.size) {
-            if (i < newMaterials.size) {
-                result.add(newMaterials[i])
-                i++
-            }
-            if (j < currentMaterials.size) {
-                result.add(currentMaterials[j])
-                j++
-            }
+        for (k in 0 until maxSize) {
+            if (k < newMaterials.size) result.add(newMaterials[k])
+            if (k < currentMaterials.size) result.add(currentMaterials[k])
         }
+
         result.forEach { addMaterial(it) }
     }
 }
