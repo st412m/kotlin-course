@@ -69,9 +69,11 @@ class Alphabetical : Materials() {
 
 class KeyValue : Materials() {
     fun addKeyValuePairs(pairs: Map<String, String>) {
-        val currentMaterials = extractMaterial()
-        pairs.keys.forEach { addMaterial(it) }
+        val currentMaterials = extractMaterial().toMutableList()
+        pairs.forEach{(key, value) ->
+            currentMaterials.add(0, key)
+            currentMaterials.add(value)
+        }
         currentMaterials.forEach { addMaterial(it) }
-        pairs.values.forEach { addMaterial(it) }
     }
 }
