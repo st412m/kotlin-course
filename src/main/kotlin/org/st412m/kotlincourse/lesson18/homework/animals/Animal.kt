@@ -1,5 +1,7 @@
 package org.st412m.kotlincourse.lesson18.homework.animals
 
+import org.st412m.kotlincourse.lesson18.homework.printColored
+
 abstract class Animal() {
     abstract fun makeSound(sound: String)
 
