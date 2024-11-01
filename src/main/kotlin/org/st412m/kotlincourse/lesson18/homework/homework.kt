@@ -37,4 +37,12 @@ fun main() {
     println("-----Струйник------")
     val inkjetPrinter = InkjetPrinter()
     inkjetPrinter.print(text)
+
+    println("-----Корзина покупок------")
+    val cart = ShoppingCart()
+    cart.addToCart(1)
+    cart.addToCart(2, 3)
+    cart.addToCart(mapOf(3 to 2, 4 to 1))
+    cart.addToCart(listOf(1, 2, 5, 6, 7, 8, 9, 10, 11))
+    println(cart)
 }
