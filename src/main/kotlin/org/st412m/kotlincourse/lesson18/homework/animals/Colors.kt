@@ -1,4 +1,4 @@
-package org.st412m.kotlincourse.lesson18.homework
+package org.st412m.kotlincourse.lesson18.homework.animals
 
 object Colors {
     const val RESET = "\u001B[0m"

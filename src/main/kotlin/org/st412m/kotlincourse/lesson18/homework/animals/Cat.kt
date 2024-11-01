@@ -1,4 +1,4 @@
-package org.st412m.kotlincourse.lesson18.homework
+package org.st412m.kotlincourse.lesson18.homework.animals
 
 class Cat() : Animal() {
     override fun makeSound(sound: String) {
