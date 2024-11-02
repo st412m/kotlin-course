@@ -11,6 +11,7 @@ import org.st412m.kotlincourse.lesson18.homework.shapes.Shape
 import org.st412m.kotlincourse.lesson18.homework.shapes.Square
 import org.st412m.kotlincourse.lesson18.homework.shapes.Triangle
 
+
 fun main() {
     val animals: List<Animal> = listOf(Dog(), Cat(), Bird())
     val sounds = listOf("Bark", "Meow", "Tweet")
@@ -45,4 +46,31 @@ fun main() {
     cart.addToCart(mapOf(3 to 2, 4 to 1))
     cart.addToCart(listOf(1, 2, 5, 6, 7, 8, 9, 10, 11))
     println(cart)
+
+
+    println("-----Логгер------")
+    val infoMessage = "Это информационное сообщение"
+    val warningMessage = "Это предупреждение"
+    val errorMessage = "Это сообщение об ошибке"
+    val debugMessage = "Это сообщение об отладке"
+
+    val logger1 = Logger()
+    logger1.log(infoMessage)
+
+
+    logger1.log("WARNING", warningMessage)
+    logger1.log("ERROR", errorMessage)
+    logger1.log("DEBUG", debugMessage)
+
+
+    val logEntries = listOf(
+        "INFO" to "Это информационное сообщение",
+        "WARNING" to "Это предупреждение",
+        "ERROR" to "Это сообщение об ошибке",
+        "DEBUG" to "Это сообщение отладки"
+    )
+
+    for ((level, message) in logEntries) {
+        logger1.log(level, message)
+    }
 }

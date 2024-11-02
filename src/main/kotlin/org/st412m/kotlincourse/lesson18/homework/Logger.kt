@@ -1,6 +1,6 @@
 package org.st412m.kotlincourse.lesson18.homework
 
-abstract class Logger () {
+class Logger () {
 
     fun log(message: String) {
         println("INFO: $message")
@@ -10,7 +10,7 @@ abstract class Logger () {
         when (level) {
             "WARNING" -> printColored("$level: $message", Colors.YELLOW)
             "ERROR" -> printColored("$level: $message", Colors.WHITE, Background.RED)
-            "DEBUG" -> println("DEBUG: $message")
+            "DEBUG" -> printColored("$level: $message", Colors.CYAN)
             else -> println("INFO: $message")
         }
     }
