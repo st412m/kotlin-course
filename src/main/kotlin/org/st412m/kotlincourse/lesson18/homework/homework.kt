@@ -44,7 +44,7 @@ fun main() {
     cart.addToCart(1)
     cart.addToCart(2, 3)
     cart.addToCart(mapOf(3 to 2, 4 to 1))
-    cart.addToCart(listOf(1, 2, 5, 6, 7, 8, 9, 10, 11))
+    cart.addToCart(listOf(1, 2, 5, 6, 7, 8, 9))
     println(cart)
 
 
@@ -57,20 +57,27 @@ fun main() {
     val logger1 = Logger()
     logger1.log(infoMessage)
 
-
+    println("-----Тест логгера 1------")
     logger1.log("WARNING", warningMessage)
     logger1.log("ERROR", errorMessage)
     logger1.log("DEBUG", debugMessage)
 
-
+    println("-----Тест логгера 2------")
     val logEntries = listOf(
-        "INFO" to "Это информационное сообщение",
-        "WARNING" to "Это предупреждение",
-        "ERROR" to "Это сообщение об ошибке",
-        "DEBUG" to "Это сообщение отладки"
+        "INFO" to infoMessage,
+        "WARNING" to warningMessage,
+        "ERROR" to errorMessage,
+        "DEBUG" to debugMessage
     )
 
     for ((level, message) in logEntries) {
         logger1.log(level, message)
     }
+    println("-----Тест логгера 3------")
+    logger1.log(listOf("Сообщение раз", "Сообщение два", "Сообщение три"))
+
+    println("-----Тест логгера 4------")
+    val dictionary = mapOf<Int, String>()
+    val maxKey = dictionary.keys.maxOrNull()
+        ?: return logger1.log(NoSuchElementException("Словарь пустой. Нет никаких ключей"))
 }
