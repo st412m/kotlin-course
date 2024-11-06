@@ -1,6 +1,6 @@
 package org.st412m.kotlincourse.lesson19.homework.calculator
 
-class Modulus : OperationClass() {
+private class Modulus : OperationClass() {
     override fun execute(operands: Pair<Any, Any>): String {
         return if (isApplicable(operands)) {
             (operands.first as Double % operands.second as Double).toString()

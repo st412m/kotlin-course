@@ -1,6 +1,6 @@
 package org.st412m.kotlincourse.lesson19.homework.calculator
 
-class Multiplication : OperationClass() {
+private class Multiplication : OperationClass() {
     override fun execute(operands: Pair<Any, Any>): String {
         return if (isApplicable(operands)) {
             when {
