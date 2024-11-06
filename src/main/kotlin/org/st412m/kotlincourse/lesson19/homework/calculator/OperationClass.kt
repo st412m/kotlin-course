@@ -2,9 +2,9 @@ package org.st412m.kotlincourse.lesson19.homework.calculator
 
 abstract class OperationClass {
 
-    abstract fun execute(operand1: Any, operand2: Any): String
+    abstract fun execute(operands: Pair<Any, Any>): String
 
-    abstract fun isApplicable(operand1: Any, operand2: Any): Boolean
+    abstract fun isApplicable(operands: Pair<Any, Any>): Boolean
 
     protected fun splitExpression(expression: String): Pair<Any, Any> {
         val operands = expression.split(expression)
