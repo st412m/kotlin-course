@@ -27,29 +27,22 @@ class CalculatorClass {
         val firstOperand = expression.substring(0, operatorIndex).trim()
         val secondOperand = expression.substring(operatorIndex + operatorType.length).trim()
 
-        return Pair(OperandParser.parseOperand(firstOperand), OperandParser.parseOperand(secondOperand))
+        return Pair(OperandUtils.parseOperand(firstOperand), OperandUtils.parseOperand(secondOperand))
     }
 }
 
 private class Addition : OperationClass("+") {
     override fun execute(operands: Pair<Any, Any>): String {
         return if (isApplicable(operands)) {
+            val doubleOperands = OperandUtils.makeDouble(operands)
             when {
-                operands.first is Double && operands.second is Double -> {
-                    val firstNum = operands.first as Double
-                    val secondNum = operands.second as Double
-                    (firstNum + secondNum).toString()
-                }
-
+                doubleOperands != null -> (doubleOperands.first + doubleOperands.second).toString()
                 operands.first is String && operands.second is String -> {
                     val firstStr = operands.first as String
                     val secondStr = operands.second as String
                     firstStr + secondStr
                 }
-
-                else -> {
-                    "Операция невозможна"
-                }
+                else -> "Операция невозможна"
             }
         } else {
             "Операция невозможна"
@@ -57,37 +50,32 @@ private class Addition : OperationClass("+") {
     }
 
     override fun isApplicable(operands: Pair<Any, Any>): Boolean {
-        return (operands.first is Double && operands.second is Double) ||
+        return OperandUtils.bothDoubles(operands) ||
                 (operands.first is String && operands.second is String)
     }
 }
 
 private class Subtraction : OperationClass("-") {
     override fun execute(operands: Pair<Any, Any>): String {
-        return if (isApplicable(operands)) {
-            val firstNum = operands.first as Double
-            val secondNum = operands.second as Double
-            (firstNum - secondNum).toString()
+        val doubleOperands = OperandUtils.makeDouble(operands)
+        return if (doubleOperands != null) {
+            (doubleOperands.first - doubleOperands.second).toString()
         } else {
             "Операция невозможна"
         }
     }
 
     override fun isApplicable(operands: Pair<Any, Any>): Boolean {
-        return (operands.first is Double && operands.second is Double)
+        return OperandUtils.bothDoubles(operands)
     }
 }
 
 private class Multiplication : OperationClass("*") {
     override fun execute(operands: Pair<Any, Any>): String {
         return if (isApplicable(operands)) {
+            val doubleOperands = OperandUtils.makeDouble(operands)
             when {
-                operands.first is Double && operands.second is Double -> {
-                    val firstNum = operands.first as Double
-                    val secondNum = operands.second as Double
-                    (firstNum * secondNum).toString()
-                }
-
+                doubleOperands != null -> (doubleOperands.first * doubleOperands.second).toString()
                 operands.first is String && operands.second is Double -> {
                     val str = operands.first as String
                     val count = (operands.second as Double).toInt()
@@ -97,7 +85,6 @@ private class Multiplication : OperationClass("*") {
                         "Число для умножения на строку должно быть целым"
                     }
                 }
-
                 else -> "Операция невозможна"
             }
         } else {
@@ -106,20 +93,19 @@ private class Multiplication : OperationClass("*") {
     }
 
     override fun isApplicable(operands: Pair<Any, Any>): Boolean {
-        return (operands.first is Double && operands.second is Double) ||
+        return OperandUtils.bothDoubles(operands) ||
                 (operands.first is String && operands.second is Double)
     }
 }
 
 private class Division : OperationClass("/") {
     override fun execute(operands: Pair<Any, Any>): String {
-        return if (isApplicable(operands)) {
-            val firstNum = operands.first as Double
-            val secondNum = operands.second as Double
-            if (secondNum == 0.0) {
+        val doubleOperands = OperandUtils.makeDouble(operands)
+        return if (doubleOperands != null) {
+            if (doubleOperands.second == 0.0) {
                 "Деление на ноль невозможно"
             } else {
-                (firstNum / secondNum).toString()
+                (doubleOperands.first / doubleOperands.second).toString()
             }
         } else {
             "Операция невозможна"
@@ -127,19 +113,18 @@ private class Division : OperationClass("/") {
     }
 
     override fun isApplicable(operands: Pair<Any, Any>): Boolean {
-        return (operands.first is Double && operands.second is Double)
+        return OperandUtils.bothDoubles(operands)
     }
 }
 
 private class Modulus : OperationClass("%") {
     override fun execute(operands: Pair<Any, Any>): String {
-        return if (isApplicable(operands)) {
-            val firstNum = operands.first as Double
-            val secondNum = operands.second as Double
-            if (secondNum == 0.0) {
+        val doubleOperands = OperandUtils.makeDouble(operands)
+        return if (doubleOperands != null) {
+            if (doubleOperands.second == 0.0) {
                 "Деление на ноль невозможно"
             } else {
-                (firstNum % secondNum).toString()
+                (doubleOperands.first % doubleOperands.second).toString()
             }
         } else {
             "Операция невозможна"
@@ -147,15 +132,28 @@ private class Modulus : OperationClass("%") {
     }
 
     override fun isApplicable(operands: Pair<Any, Any>): Boolean {
-        return (operands.first is Double && operands.second is Double)
+        return OperandUtils.bothDoubles(operands)
     }
 }
 
-private object OperandParser {
+
+private object OperandUtils {
+    fun makeDouble(operands: Pair<Any, Any>): Pair<Double, Double>? {
+        return if (operands.first is Double && operands.second is Double) {
+            operands.first as Double to operands.second as Double
+        } else null
+    }
+
+    fun bothDoubles(operands: Pair<Any, Any>): Boolean {
+        return operands.first is Double && operands.second is Double
+    }
+
     fun parseOperand(operand: String): Any {
         return when {
             operand.toDoubleOrNull() != null -> operand.toDouble()
             else -> operand
         }
     }
+
 }
+
