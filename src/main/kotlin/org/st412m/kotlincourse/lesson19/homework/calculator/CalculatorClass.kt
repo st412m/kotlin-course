@@ -57,12 +57,14 @@ private class Addition : OperationClass("+") {
 
 private class Subtraction : OperationClass("-") {
     override fun execute(operands: Pair<Any, Any>): String {
-        val doubleOperands = OperandUtils.makeDouble(operands)
-        return if (doubleOperands != null) {
-            (doubleOperands.first - doubleOperands.second).toString()
-        } else {
-            "Операция невозможна"
-        }
+        return if (isApplicable(operands)) {
+            val doubleOperands = OperandUtils.makeDouble(operands)
+            return if (doubleOperands != null) {
+                (doubleOperands.first - doubleOperands.second).toString()
+            } else {
+                "Операция невозможна"
+            }
+        } else "Операция невозможна"
     }
 
     override fun isApplicable(operands: Pair<Any, Any>): Boolean {
@@ -100,16 +102,18 @@ private class Multiplication : OperationClass("*") {
 
 private class Division : OperationClass("/") {
     override fun execute(operands: Pair<Any, Any>): String {
-        val doubleOperands = OperandUtils.makeDouble(operands)
-        return if (doubleOperands != null) {
-            if (doubleOperands.second == 0.0) {
-                "Деление на ноль невозможно"
+        return if (isApplicable(operands)) {
+            val doubleOperands = OperandUtils.makeDouble(operands)
+            return if (doubleOperands != null) {
+                if (doubleOperands.second == 0.0) {
+                    "Деление на ноль невозможно"
+                } else {
+                    (doubleOperands.first / doubleOperands.second).toString()
+                }
             } else {
-                (doubleOperands.first / doubleOperands.second).toString()
+                "Операция невозможна"
             }
-        } else {
-            "Операция невозможна"
-        }
+        } else "Операция невозможна"
     }
 
     override fun isApplicable(operands: Pair<Any, Any>): Boolean {
@@ -119,16 +123,18 @@ private class Division : OperationClass("/") {
 
 private class Modulus : OperationClass("%") {
     override fun execute(operands: Pair<Any, Any>): String {
-        val doubleOperands = OperandUtils.makeDouble(operands)
-        return if (doubleOperands != null) {
-            if (doubleOperands.second == 0.0) {
-                "Деление на ноль невозможно"
+        return if (isApplicable(operands)) {
+            val doubleOperands = OperandUtils.makeDouble(operands)
+            return if (doubleOperands != null) {
+                if (doubleOperands.second == 0.0) {
+                    "Деление на ноль невозможно"
+                } else {
+                    (doubleOperands.first % doubleOperands.second).toString()
+                }
             } else {
-                (doubleOperands.first % doubleOperands.second).toString()
+                "Операция невозможна"
             }
-        } else {
-            "Операция невозможна"
-        }
+        }else "Операция невозможна"
     }
 
     override fun isApplicable(operands: Pair<Any, Any>): Boolean {
