@@ -6,7 +6,8 @@ class BoxAny(private val item: Any) {
     }
 }
 
-class Box<T>(val item: T) {  // Box будет принимать тип, который мы туда передаем, из-за <T>, соответственно item будет
+class Box<T>(private val item: T) {  // Box будет принимать тип, который мы туда передаем, из-за <T>, соответственно
+    // item будет
     // такого же типа
     fun getItem(): T {
         return item
