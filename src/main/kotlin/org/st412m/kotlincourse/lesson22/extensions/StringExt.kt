@@ -7,3 +7,7 @@ fun String.removeSpaces(): String {
 fun String.funA(arg1: String, arg2: Int): Boolean {
     return true
 }
+
+fun String.wordCounter(): Int {
+    return split(" ").size
+}

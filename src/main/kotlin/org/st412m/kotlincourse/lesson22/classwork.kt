@@ -3,7 +3,6 @@ package org.st412m.kotlincourse.lesson22
 import org.st412m.kotlincourse.lesson22.extensions.*
 
 
-
 fun main() {
     val result = "String with spaces".removeSpaces()
     println(result)
@@ -22,5 +21,9 @@ fun main() {
     println("%.2f".format(num))
     num.funE()
     println(num.createList(8))
+
+    val str = "aaa bbb ccc ddd"
+    println(str.split(" ").size)
+    println(str.wordCounter())
 }
 
