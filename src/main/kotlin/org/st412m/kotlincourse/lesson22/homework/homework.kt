@@ -88,7 +88,7 @@ fun main() {
 
     println()
     println("----ПИДМАРКОЗ-----")
-    val userList= listOf("Николай", "Иван", "Харитон", "Ульяна", "Яков", "Адольф")
-    val word = "Гитлер"
+    val userList= listOf("Павел", "Иван", "Дмитрий", "Олег", "Роман", "Адольф", "Семен")
+    val word = "Гитлер!"
     word.pidmarkoz(userList)
 }
