@@ -1,10 +1,14 @@
 package org.st412m.kotlincourse.lesson22.homework
 
+import org.st412m.kotlincourse.lesson22.homework.extensions.decrypt
+import org.st412m.kotlincourse.lesson22.homework.extensions.encrypt
 import org.st412m.kotlincourse.lesson22.homework.extensions.returnGenericNull
 import org.st412m.kotlincourse.lesson22.homework.extensions.returnMapGenericNull
 import org.st412m.kotlincourse.lesson22.homework.extensions.returnNothing
 import org.st412m.kotlincourse.lesson22.homework.extensions.returnPair
 import org.st412m.kotlincourse.lesson22.homework.extensions.returnSting
+import org.st412m.kotlincourse.lesson22.homework.extensions.revert
+import org.st412m.kotlincourse.lesson22.homework.extensions.within
 
 fun main() {
     println("----Задача 1а ArrayReturnPair-----")
@@ -51,4 +55,33 @@ fun main() {
 
     val nullValue: Long? = null
     println(nullValue.returnSting())
+
+    println()
+    println("----Задача 3 Revert-----")
+    val pair1 = Pair(1, "one")
+    println(pair1.revert())
+    val pair2 = Pair(1.0, null)
+    println(pair2.revert())
+    val pair3 = Pair(null, "один")
+    println(pair3.revert())
+
+    println()
+    println("----Задача 4 Within-----")
+    val num1: Int = 100
+    val num2: Double = 101.5
+    val deviation: Float = 1.5f
+
+    println(num1.within(num2, deviation))
+    println(num1.within(105, deviation))
+    println(50.0.within(50.5, 0.6))
+    println(10L.within(15L, 4))
+
+    println()
+    println("----Задача 5 Encrypt/Decrypt-----")
+    val text = "Hello Kitty"
+    val shift = 3
+    val encryptedText = text.encrypt(shift)
+    println(encryptedText)
+    val decryptedText = encryptedText.decrypt(shift)
+    println(decryptedText)
 }
