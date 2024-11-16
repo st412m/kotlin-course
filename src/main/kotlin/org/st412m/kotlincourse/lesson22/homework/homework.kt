@@ -2,6 +2,7 @@ package org.st412m.kotlincourse.lesson22.homework
 
 import org.st412m.kotlincourse.lesson22.homework.extensions.decrypt
 import org.st412m.kotlincourse.lesson22.homework.extensions.encrypt
+import org.st412m.kotlincourse.lesson22.homework.extensions.pidmarkoz
 import org.st412m.kotlincourse.lesson22.homework.extensions.returnGenericNull
 import org.st412m.kotlincourse.lesson22.homework.extensions.returnMapGenericNull
 import org.st412m.kotlincourse.lesson22.homework.extensions.returnNothing
@@ -84,4 +85,10 @@ fun main() {
     println(encryptedText)
     val decryptedText = encryptedText.decrypt(shift)
     println(decryptedText)
+
+    println()
+    println("----ПИДМАРКОЗ-----")
+    val userList= listOf("Николай", "Иван", "Харитон", "Ульяна", "Яков", "Адольф")
+    val word = "Гитлер"
+    word.pidmarkoz(userList)
 }
