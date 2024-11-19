@@ -10,12 +10,12 @@ fun <T> Map<T, List<T>>?.returnMapGenericNull(arg: Number): Map<String, T?>? {
     if (this == null) return null
     val result = mutableMapOf<String, T?>()
     for ((k, v) in this)
-    if (arg in v.indices) {
-        val value = v[arg.toInt()]
-        result[k.toString()] = value
-    } else {
-        val value: T? = null
-        result[k.toString()] = value
-    }
-    return result
+        if (arg in v.indices) {
+            val value = v[arg.toInt()]
+            result[k.toString()] = value
+        } else {
+            val value: T? = null
+            result[k.toString()] = value
+        }
+    return result.toMap()
 }
