@@ -1,9 +1,8 @@
 package org.st412m.kotlincourse.lesson22.homework.extensions
 
-import org.st412m.kotlincourse.lesson8.dateTime
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.*
+import kotlin.random.Random
 
 /*
 Реализуйте для класса String два метода расширения: encrypt и decrypt. Метод encrypt должен сдвигать каждый символ
@@ -26,17 +25,25 @@ fun String.decrypt(shift: Int): String {
 выводить в консоли эту строку побуквенно в столбик: имя автора и букву под ним.
 */
 
-fun String.pidmarkoz(users: List<String>){
-    val threadSize = minOf(users.size, this.length)
+fun String.pidmarkoz(users: List<String>) {
+    val threadSize = this.length
     val today = LocalDate.now()
-    val formatter = DateTimeFormatter.ofPattern("d MMMM yyyy" )
+    val formatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
     for (i in 0 until threadSize) {
         val horizontalBorder = "-".repeat(40)
         val dateFormatted = today.format(formatter)
         println(horizontalBorder)
-        val userAndDate = users[i] + " ".repeat(36 - users[i].length - dateFormatted.length) + dateFormatted
+        val user = users[i % users.size]
+        val userAndDate = user + " ".repeat(36 - user.length - dateFormatted.length) + dateFormatted
+        val charLine = this[i] + " ".repeat(36 - this[i].toString().length)
+        val replies = threadSize - i - 1
+        val reposts = Random.nextInt(1, users.size)
+        val likes = Random.nextInt(1, users.size)
+        val bookmark = Random.nextInt(1, users.size)
+        val emojis = " 💬$replies     🔁$reposts     ❤️$likes     🔖$bookmark    📤"
         println("| $userAndDate |")
-        println("| ${this[i] + " ".repeat(horizontalBorder.length - this.length + 2) } |")
+        println("| $charLine |")
+        println("| $emojis |")
         println(horizontalBorder)
     }
 }
