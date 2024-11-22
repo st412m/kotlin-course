@@ -94,6 +94,12 @@ fun tryCastToListAndPrint(arg: Any?) {
     }
 }
 
+fun tryCastToListAndPrint1(arg: Any?) {
+    (arg as? List<*>)?.forEach {
+        if (it is String) println(it)
+        else println("$it не является строкой.")
+    } ?: println("$arg не является списком.")
+}
 
 fun main(){
     println("-----Задача 1------")
@@ -142,7 +148,7 @@ fun main(){
     val arg14 = listOf("йцукенг", 123, "фыва", 45.6, true, "пролд")
     val arg15 = "Так себе список"
 
-    tryCastToListAndPrint(arg14)
-    tryCastToListAndPrint(arg15)
+    tryCastToListAndPrint1(arg14)
+    tryCastToListAndPrint1(arg15)
 
 }
