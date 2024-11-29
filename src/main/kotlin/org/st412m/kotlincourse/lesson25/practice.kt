@@ -75,3 +75,5 @@ fun function4(numbers: List<Int>): Int {
 fun Set<Int>.filterEven(): Set<Int> {
     return this.filter { it % 2 == 0 }.toSet()
 }
+
+fun <T> function6(arg: T){}  // сделать анонимную функцию с дженериком нельзя
