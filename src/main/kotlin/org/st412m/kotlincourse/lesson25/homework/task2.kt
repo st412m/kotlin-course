@@ -23,13 +23,12 @@ fun main() {
     }
 
     val notNullableCheck2: (List<Double>) -> Double = {
-        require(it.isNotEmpty()){ "Список не должен быть пустым" }
+        require(it.isNotEmpty()) { "Список не должен быть пустым" }
         it.sum() / it.size
     }
 
-    val notNullableCheck3 = {
-        numbers: List<Double> ->
-        require(numbers.isNotEmpty()){ "Список не должен быть пустым" }
+    val notNullableCheck3 = { numbers: List<Double> ->
+        require(numbers.isNotEmpty()) { "Список не должен быть пустым" }
         numbers.sum() / numbers.size
     }
 
