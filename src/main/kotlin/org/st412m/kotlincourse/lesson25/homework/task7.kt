@@ -1,10 +1,5 @@
 package org.st412m.kotlincourse.lesson25.homework
 
-import jdk.internal.org.jline.keymap.KeyMap.key
-import kotlin.collections.component1
-import kotlin.collections.component2
-import kotlin.collections.iterator
-
 /*
 Задание 7. Создай функцию расширения словаря из списка и множества, которая принимает все известные тебе типы
 (вспомни все что знаешь и под каждый тип создай аргумент) и возвращает строку. Функция должна распечатать все данные,
