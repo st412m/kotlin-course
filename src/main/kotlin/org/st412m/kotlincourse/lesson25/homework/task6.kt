@@ -19,16 +19,14 @@ fun main() {
     val map1 = mutableMapOf<String, Int>()
 
     val keyLessValue1 = fun Map<String, Int>.(arg: Int): List<String> {
-        if (this.isEmpty()) throw IllegalStateException("Это словарь пустой")
-        return this.filter { it.key.length < it.value && it.key.length > arg }
-            .map { it.key }
+         return this.filter { it.key.length < it.value && it.key.length > arg }
+            .map { it.key }.ifEmpty { throw IllegalStateException("Нет подходящих ключей") }
     }
 
 
     val keyLessValue2: Map<String, Int>.(arg: Int) -> List<String> = { arg ->
-        if (this.isEmpty()) throw IllegalStateException("Это словарь пустой")
-        this.filter { it.key.length < it.value && it.key.length > arg }
-            .map { it.key }
+         this.filter { it.key.length < it.value && it.key.length > arg }
+            .map { it.key }.ifEmpty { throw IllegalStateException("Нет подходящих ключей") }
     }
 
     println(map1.keyLessValue(1))
@@ -39,7 +37,6 @@ fun main() {
 }
 
 fun Map<String, Int>.keyLessValue(arg: Int): List<String> {
-    if (this.isEmpty()) throw IllegalStateException("Это словарь пустой")
-    return this.filter { it.key.length < it.value && it.key.length > arg }
-        .map { it.key }
+     return this.filter { it.key.length < it.value && it.key.length > arg }
+        .map { it.key }.ifEmpty { throw IllegalStateException("Нет подходящих ключей") }
 }
