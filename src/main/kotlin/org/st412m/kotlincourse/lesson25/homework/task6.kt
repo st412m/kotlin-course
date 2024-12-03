@@ -16,18 +16,22 @@ fun main() {
         "черника" to 9,     // Длина строки меньше 9
         "слива" to 4        // Длина строки больше 4
     )
+    val map1 = mutableMapOf<String, Int>()
 
     val keyLessValue1 = fun Map<String, Int>.(arg: Int): List<String> {
+        if (this.isEmpty()) throw IllegalStateException("Это словарь пустой")
         return this.filter { it.key.length < it.value && it.key.length > arg }
             .map { it.key }
     }
 
 
     val keyLessValue2: Map<String, Int>.(arg: Int) -> List<String> = { arg ->
+        if (this.isEmpty()) throw IllegalStateException("Это словарь пустой")
         this.filter { it.key.length < it.value && it.key.length > arg }
             .map { it.key }
     }
 
+    println(map1.keyLessValue(1))
     println(map.keyLessValue(3))
     println(map.keyLessValue1(3))
     println(map.keyLessValue2(3))
@@ -35,6 +39,7 @@ fun main() {
 }
 
 fun Map<String, Int>.keyLessValue(arg: Int): List<String> {
+    if (this.isEmpty()) throw IllegalStateException("Это словарь пустой")
     return this.filter { it.key.length < it.value && it.key.length > arg }
         .map { it.key }
 }
