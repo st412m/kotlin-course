@@ -10,9 +10,9 @@ import java.util.logging.Filter
 
 fun filterStrings(
     list: List<String>,
-    filter: (String) -> Boolean
+    filterStr: (String) -> Boolean
 ): List<String>{
-
+   return list.filter(filterStr)
 }
 
 
@@ -32,3 +32,10 @@ fun filterStrings(
 Напишите функцию combineAndTransform, которая принимает две коллекции одного типа и функцию для их объединения и
 преобразования в одну коллекцию другого типа. Функция должна вернуть результат преобразования (коллекцию второго типа)
  */
+
+fun main() {
+    println("\n----- Задача 1 -----")
+    val stringsList = listOf("яблоко", "банан", "дом", "вертолет", "дача", "селёдка")
+    println(filterStrings(stringsList){it.length > 4})
+    println(filterStrings(stringsList){"а" in it})
+}
