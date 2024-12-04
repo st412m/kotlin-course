@@ -8,9 +8,9 @@ package org.st412m.kotlincourse.lesson26.homework
 
 fun filterStrings(
     list: List<String>,
-    filterStr: (String) -> Boolean
-): List<String>{
-   return list.filter(filterStr)
+    filterStr: (String) -> Boolean,
+): List<String> {
+    return list.filter(filterStr)
 }
 
 
@@ -21,9 +21,9 @@ fun filterStrings(
 
 fun applyToNumbers(
     list: List<Number>,
-    numTransformation: (Number) -> Number
+    numTransformation: (Number) -> Number,
 ): List<Number> {
-    return list.map{numTransformation(it)}
+    return list.map { numTransformation(it) }
 }
 
 
@@ -34,9 +34,9 @@ fun applyToNumbers(
 
 fun sumByCondition(
     numList: List<Number>,
-    conditionDefinition: (Number) -> Boolean
+    conditionDefinition: (Number) -> Boolean,
 ): Double {
-    return numList.filter(conditionDefinition).sumOf{it.toDouble()}
+    return numList.filter(conditionDefinition).sumOf { it.toDouble() }
 }
 
 
@@ -48,9 +48,9 @@ fun sumByCondition(
 fun combineAndTransform(
     collectionOne: List<String>,
     collectionTwo: List<Int>,
-    convertToMap: (List<String>, List<Int>) -> Map<String, Int>
+    convertToMap: (List<String>, List<Int>) -> Map<String, Int>,
 
-): Map<String, Int>{
+    ): Map<String, Int> {
     return convertToMap(collectionOne, collectionTwo)
 }
 
@@ -58,20 +58,20 @@ fun combineAndTransform(
 fun main() {
     println("\n----- Задача 1 -----")
     val stringsList = listOf("яблоко", "банан", "дом", "вертолет", "дача", "селёдка")
-    println(filterStrings(stringsList){it.length > 4})
-    println(filterStrings(stringsList){"а" in it})
+    println(filterStrings(stringsList) { it.length > 4 })
+    println(filterStrings(stringsList) { "а" in it })
 
     println("\n----- Задача 2 -----")
     val numList1 = listOf(1, 2, -1, 5, -10)
     val numList2 = listOf(1.0, 2.0, -1.0, 5.0, -10.0)
-    println(applyToNumbers(numList1){it.toDouble()})
-    println(applyToNumbers(numList2){it.toInt() * 2})
+    println(applyToNumbers(numList1) { it.toDouble() })
+    println(applyToNumbers(numList2) { it.toInt() * 2 })
 
     println("\n----- Задача 3 -----")
     val numList3 = listOf(1, -2, 3, -4, 5, -6)
     val numList4 = listOf(1.0, -2.0, 3.01, -4.06, 5.0, -6.0)
-    println(sumByCondition(numList3){it.toDouble() > 0})
-    println(sumByCondition(numList4){it.toString().length < 4})
+    println(sumByCondition(numList3) { it.toDouble() > 0 })
+    println(sumByCondition(numList4) { it.toString().length < 4 })
 
     println("\n----- Задача 4 -----")
     val collectionOne = listOf("один", "два", "три", "четыре")
