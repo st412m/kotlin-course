@@ -60,7 +60,9 @@ fun func6(
  */
 
 fun func7(
-    strangeFunc: (List<Number>, Set<String>, (List<Int>, Set<String>) -> Unit) -> Map<String, Int>,
+    list: List<Number>,
+    set: Set<String>,
+    strangeFunc: ((List<Int>, Set<String>) -> Unit) -> Map<String, Int>,
 ) {
 }
 
@@ -69,8 +71,10 @@ fun func7(
  */
 
 fun func8(
-    returnString: (Number, (Number) -> String) -> String,
-) {
+    num: Number,
+    returnString: ((Number) -> String) -> String,
+): String {
+    return num.toString()
 }
 
 /*
