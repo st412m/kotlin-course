@@ -21,11 +21,20 @@ fun filterStrings(
 (те-есть принимающая число и возвращающая число). Функция должна вернуть результат преобразования исходного списка чисел.
  */
 
+fun applyToNumbers(
+    list: List<Number>,
+    numTransformation: (Number) -> Number
+): List<Number> {
+    return list.map{numTransformation(it)}
+}
+
 
 /*
 Реализуйте функцию sumByCondition, которая принимает список чисел и функцию, определяющую условие для включения числа
 в сумму. Функция должна вернуть сумму чисел, прошедших проверку.
  */
+
+
 
 
 /*
@@ -38,4 +47,10 @@ fun main() {
     val stringsList = listOf("яблоко", "банан", "дом", "вертолет", "дача", "селёдка")
     println(filterStrings(stringsList){it.length > 4})
     println(filterStrings(stringsList){"а" in it})
+
+    println("\n----- Задача 2 -----")
+    val numList1 = listOf(1, 2, -1, 5, -10)
+    val numList2 = listOf(1.0, 2.0, -1.0, 5.0, -10.0)
+    println(applyToNumbers(numList1){it.toDouble()})
+    println(applyToNumbers(numList2){it.toInt() * 2})
 }
