@@ -14,7 +14,7 @@ fun naheraAGlavnoeZachem(
         levelThree
     }
     return { stringFunc ->
-        println("Переданная строка: ${stringFunc()}\nстранный список: $levelThree") }
+        println("Переданная строка: ${stringFunc()}\nстранный список: ${arg2.hashCode()}") }
 }
 
 fun main() {
