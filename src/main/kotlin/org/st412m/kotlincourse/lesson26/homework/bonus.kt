@@ -8,24 +8,31 @@ fun naheraAGlavnoeZachem(
 ): (() -> String) -> Unit {
     var condition: (String) -> Boolean = { it.length > 1 }
     val levelOne = arg1.toString()
-    val levelTwo = if (condition(levelOne) && arg1 > 0 ) 1.1 else 0.0
+    val levelTwo = if (condition(levelOne) || arg1 > 0) 1.1 else 0.0
     val levelThree = (1..arg1.absoluteValue).map { levelTwo }
+
     arg2 { innerFunc ->
-        levelThree
+        levelThree.map { it + 42 }
     }
+
+
     return { stringFunc ->
-        println("Переданная строка: ${stringFunc()}\nстранный хэш: ${arg2.hashCode()}\nстранный список: " +
-                    "$levelThree\nзачем-то переданный аргумент: $arg1")}
+        println(
+            "Переданная строка: ${stringFunc()}\n" +
+                    "странный хэш: ${arg2.hashCode()}\n" +
+                    "странный список: ${levelThree.joinToString()}\n" +
+                    "зачем-то переданный аргумент: $arg1"
+        )
+    }
 }
 
 fun main() {
     val shizoText = "Не выходи из комнаты, не совершай ошибку"
     val result = naheraAGlavnoeZachem(-2) { func ->
         { stringFunc ->
-            {func { it.toString().toDouble() }}
+            { func { it.toString().toDouble() } }
         }
     }
     result { shizoText }
 }
-
 

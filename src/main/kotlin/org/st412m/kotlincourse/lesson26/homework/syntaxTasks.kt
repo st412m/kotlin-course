@@ -32,7 +32,7 @@ fun func3(
  */
 
 fun func4(
-    twoArg: (arg1: Double, arg2: Double) -> Boolean,
+    twoArg: (Double, Double) -> Boolean,
 ) {
 }
 
