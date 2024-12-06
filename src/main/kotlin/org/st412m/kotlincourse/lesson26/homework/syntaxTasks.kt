@@ -63,7 +63,7 @@ fun func6(
 fun func7(
     list: List<Number>,
     set: Set<String>,
-    strangeFunc: ((List<Int>, Set<String>) -> Unit) -> Map<String, Int>,
+    strangeFunc: (List<Int>, Set<String>)  -> Map<String, Int>,
 ) {
 }
 
