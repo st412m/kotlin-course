@@ -7,19 +7,17 @@ fun naheraAGlavnoeZachem(
     arg2: (((((Int) -> String) -> Boolean) -> Double) -> List<Double>) -> (() -> String) -> Unit,
 ): (() -> String) -> Unit {
     var condition: (String) -> Boolean = { it.length > 1 }
-    val levelOne = {arg1.toString()}
-    val levelTwo = {if (condition(levelOne()) || arg1 > 0) 1.1 else 0.0}
-    val levelThree = {(1..arg1.absoluteValue).map { levelTwo() }}
-
-    arg2 {
-     levelThree()
-    }
+    val levelOne = { arg1.toString() }
+    val levelTwo = { if (condition(levelOne()) || arg1 > 0) 1.1 else 0.0 }
+    val levelThree = { (1..arg1.absoluteValue).map { levelTwo() } }
 
     return { stringFunc ->
+        arg2 { levelTwoFunc ->
+            levelThree()
+       }
         println(
             "Переданная строка: ${stringFunc()}\n" +
-                    "странный хэш: $arg2\n" +
-                    "странный список: ${levelThree}\n" +
+                    "странный список: ${levelThree()}\n" +
                     "зачем-то переданный аргумент: $arg1"
         )
     }
