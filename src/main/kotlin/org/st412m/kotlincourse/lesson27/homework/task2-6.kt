@@ -78,7 +78,7 @@ fun niceOutput(obj: Person): String {
 fun forSlaughter(obj: Person?): Employee? {
     return obj?.let {
         Employee(it.name, it.age, "будущая жертва").apply {
-            email = "firstson@genesis.net"
+            email = "secondson@genesis.net"
             department = "Счастливая семья"
         }.also {
             println("${it.name}\n${it.age}\n${it.position}\n${it.email}\n${it.department}")
