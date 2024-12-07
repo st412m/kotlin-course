@@ -14,7 +14,7 @@ fun naheraAGlavnoeZachem(
     return { stringFunc ->
         arg2 { levelTwoFunc ->
             levelThree()
-       }
+        }
         println(
             "Переданная строка: ${stringFunc()}\n" +
                     "странный список: ${levelThree()}\n" +
