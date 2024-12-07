@@ -1,8 +1,5 @@
 package org.st412m.kotlincourse.lesson27.homework
 
-import kotlin.let
-import kotlin.math.E
-
 
 fun main() {
     /*
