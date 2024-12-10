@@ -7,20 +7,12 @@ package org.st412m.kotlincourse.lesson27.homework
  */
 
 
-fun timeTracker(func: () -> List<Int>): String {
+fun timeTracker(func: () -> Any): String {
     val startTime = System.currentTimeMillis()
     val result = func()
     val endTime = System.currentTimeMillis()
     val executionTime = endTime - startTime
     return "Результат работы функции: $result\nВремя выполнения: $executionTime ms\n"
-}
-
-fun timeTrackerForSting(func: () -> Unit): String {
-    val startTime = System.currentTimeMillis()
-    func()
-    val endTime = System.currentTimeMillis()
-    val executionTime = endTime - startTime
-    return "Время выполнения: $executionTime ms"
 }
 
 fun main() {
@@ -38,7 +30,7 @@ fun main() {
         }
     }
 
-    println(timeTrackerForSting(stringFunc))
+    println(timeTracker(stringFunc))
 
     val stringBuilderFunc = {
         val s = StringBuilder()
@@ -46,6 +38,6 @@ fun main() {
             s.append("новая запись")
         }
     }
-    println(timeTrackerForSting(stringBuilderFunc))
+    println(timeTracker(stringBuilderFunc))
 
 }
