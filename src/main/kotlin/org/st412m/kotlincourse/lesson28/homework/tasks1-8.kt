@@ -70,5 +70,19 @@ fun main() {
     запишите в него список параметров (в формате ключ=значение), а затем прочитайте файл и выведите только значения.
      */
     println("\n-----Задача 5-------")
+
+    val configDir = File("workspace/task5/config").apply { mkdirs() }
+    val configFile = File(configDir, "config.txt")
+
+    val parameters = listOf(
+        "key1=value1",
+        "key2=value2",
+        "key3=value3"
+    )
+    configFile.writeText(parameters.joinToString("\n"))
+
+    val values = configFile.readLines().mapNotNull { it.split("=").getOrNull(1) }
+    values.forEach { println(it) }
 }
+
 
