@@ -83,6 +83,74 @@ fun main() {
 
     val values = configFile.readLines().mapNotNull { it.split("=").getOrNull(1) }
     values.forEach { println(it) }
+
+    /*
+    Пройди по всем вложенным директориям workspace и выведи в консоль сначала пути директорий, а потом пути файлов
+     */
+    println("\n-----Задача 6-------")
+    val path = File("workspace")
+    println("Пути директорий")
+    path.walk()
+        .filter { it.isDirectory }
+        .forEach { println(it.absolutePath) }
+    println("Пути файлов")
+    path.walk()
+        .filter { it.isFile }
+        .forEach { println(it.absolutePath) }
+
+    /*
+    Создайте директорию workspace/task9/docs.
+    Проверь, есть ли файл с именем readme.md. Если файла нет, создайте его и запишите текст "This is a README file."
+     */
+    println("\n-----Задача 7-------")
+    File("workspace/task9/docs").mkdirs()
+    File("workspace/task9/docs/readme.md").apply {
+        if (!exists()) {
+            writeText("This is a README file.")
+            println("Файл создан: $absolutePath")
+        } else {
+            println("Файл уже существует: $absolutePath")
+        }
+    }
+    /*
+    Создайте файлы
+    workspace/task10/data/1/4/prod/data14.mysql
+    workspace/task10/data/2/3/prod/data23.mysql
+    workspace/task10/data/5/2/prod/data52.mysql
+    Создайте директорию workspace/task10/backup и скопируйте туда файлы из workspace/task10/data
+    сохраняя структуру директорий. Для копирования используй метод copyTo
+     */
+    println("\n-----Задача 8-------")
+    listOf(
+        "workspace/task10/data/1/4/prod/data14.mysql",
+        "workspace/task10/data/2/3/prod/data23.mysql",
+        "workspace/task10/data/5/2/prod/data52.mysql"
+    ).forEach { path ->
+        File(path).apply {
+            parentFile.mkdirs()
+            if (!exists()) {
+                createNewFile()
+                println("Файл создан: $absolutePath")
+            } else {
+                println("Файл уже существует: $absolutePath")
+            }
+        }
+    }
+    val sourceDir = File("workspace/task10/data")
+    val targetDir = File("workspace/task10/backup").apply { mkdirs() }
+
+    sourceDir.walk().forEach { file ->
+        val relativePath = file.toRelativeString(sourceDir)
+        val targetFile = File(targetDir, relativePath)
+        if (file.isDirectory) {
+            targetFile.mkdirs()
+        } else if (file.isFile) {
+            file.copyTo(targetFile, overwrite = true)
+            println("Файл скопирован: ${file.absolutePath} -> ${targetFile.absolutePath}")
+        }
+    }
 }
+
+
 
 
