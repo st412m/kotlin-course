@@ -54,6 +54,8 @@ fun main() {
     HomeDevices.TV.action()
     HomeDevices.WASHER.action()
     HomeDevices.FRIDGE.action()
+    example(HomeDevices.TV) // такое можно провернуть, только если интерфейс имплементирован в Enum
+
 }
 
 fun example(arg: hasValue){
