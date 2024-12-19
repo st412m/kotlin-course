@@ -38,7 +38,7 @@ enum class Planets(val distanceToSun: Double, val weight: Double) {
     JUPITER(5.2, 1.8982e27),
     SATURN(9.58, 5.6834e26),
     URANUS(19.22, 8.6810e25),
-    NEPTUNE(30.05, 1.02413e26);
+    NEPTUNE(30.05, 1.02413e26),
 }
 
 /*
