@@ -19,7 +19,7 @@ class CerealStorageImplTest {
     //выбрасывает IllegalArgumentException, если значение containerCapacity отрицательно при инициализации
     fun `should @throws IllegalArgumentException if value containerCapacity is negative on initialization`() {
         assertThrows(IllegalArgumentException::class.java) {
-            CerealStorageImpl(-1f, 50f)
+            CerealStorageImpl(-1f, storageCapacity)
         }
     }
 
@@ -29,7 +29,7 @@ class CerealStorageImplTest {
     //выбрасывает IllegalArgumentException, если storageCapacity меньше containerCapacity при инициализации
     fun `throws IllegalArgumentException if storageCapacity is less than containerCapacity at initialization`() {
         assertThrows(IllegalArgumentException::class.java) {
-            CerealStorageImpl(10f, 1f)
+            CerealStorageImpl(containerCapacity, 1f)
         }
     }
 
@@ -69,7 +69,7 @@ class CerealStorageImplTest {
     @Test
     //выбрасывает IllegalArgumentException, если в fun getCereal передано отрицательное значение
     fun `throws IllegalArgumentException if a negative value is passed in  fun getCereal`() {
-        storage.addCereal(Cereal.RICE, 10f)
+        storage.addCereal(Cereal.RICE, containerCapacity)
         assertThrows(IllegalArgumentException::class.java) {
             storage.getCereal(Cereal.RICE, -5f)
         }
@@ -94,7 +94,7 @@ class CerealStorageImplTest {
     @Test
     // вернуть true и удалить контейнер, если существует
     fun `return true remove container if exists`() {
-        storage.addCereal(Cereal.RICE, 10f)
+        storage.addCereal(Cereal.RICE, containerCapacity)
         val removed = storage.removeContainer(Cereal.RICE)
         assertTrue(removed)
     }
@@ -109,7 +109,7 @@ class CerealStorageImplTest {
     @Test
     // проверка корректного количества конкретного зерна в хранилище
     fun `should return the correct amount of cereal in storage`() {
-        storage.addCereal(Cereal.RICE, 10f)
+        storage.addCereal(Cereal.RICE, containerCapacity)
         val amount = storage.getAmount(Cereal.RICE)
         assertEquals(10f, amount, 0.01f)
     }
@@ -122,7 +122,7 @@ class CerealStorageImplTest {
     }
 
     @Test
-    // должен возвращать корректное значение при попытке переполнения
+    // должен возвращать корректное значение при попытке получить больше чем есть
     fun `should return correct amount after container overflow`() {
         storage.addCereal(Cereal.RICE, 15f)
         val amount = storage.getAmount(Cereal.RICE)
