@@ -163,7 +163,7 @@ fun main(){
                 checkEvenNumberOfSides()
             }
 
-            assertThat("При проверке фигуры ${index + 1}\n обнаружены несоответствия", shape, generalMatcher
+            assertThat("При проверке фигуры ${index + 1} обнаружены несоответствия", shape, generalMatcher
                 .collectAllMatchersAllOf())
             println("Фигура ${index + 1} прошла все проверки")
 
